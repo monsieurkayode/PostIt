@@ -1,0 +1,45 @@
+{
+  "name": "postit",
+  "version": "1.0.0",
+  "description": "A repository for PostIt application project",
+  "main": "app.js",
+  "scripts": {
+    "migrate": "./node_modules/.bin/sequelize db:migrate",
+    "start:dev": "nodemon ./bin/www",
+    "test": "SET NODE_ENV=test&& mocha --timeout 40000 --compilers js:babel-core/register server/test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monsieurkayode/PostIt.git"
+  },
+  "keywords": [
+    "Node",
+    "Express",
+    "Postgresql",
+    "Javascript"
+  ],
+  "author": "Kayode Adeola",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/monsieurkayode/PostIt/issues"
+  },
+  "homepage": "https://github.com/monsieurkayode/PostIt#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "chai": "^4.0.2",
+    "chai-http": "^3.0.0",
+    "eslint": "^4.1.1",
+    "eslint-config": "^0.3.0",
+    "eslint-config-airbnb": "^15.0.2",
+    "express": "^4.15.3",
+    "mocha": "^3.4.2",
+    "morgan": "^1.8.2",
+    "pg": "^6.4.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.2.1",
+    "sequelize-cli": "^2.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
