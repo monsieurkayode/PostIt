@@ -1,0 +1,154 @@
+//colors
+$color_gallery_approx: #fff;
+$black_15: rgba(0,0,0,0.15);
+$black: #000;
+$black_8: rgba(0,0,0,0.08);
+$white: #fff;
+$black_50: rgba(0,0,0,0.5);
+$mine_shaft_30: rgba(50,50,50,0.3);
+$black_5: rgba(0,0,0,0.05);
+$teal: teal;
+$color_storm_dust_approx: #666;
+$white: white;
+$color_mercury_approx: #e3e3e3;
+
+//fonts
+$font_0: Pacifico;
+$font_1: cursive;
+
+//urls
+$url_0: url(img/bg.jpg);
+
+
+body {
+	padding-top: 80px;
+	padding-bottom: 40px;
+	background-color: $color_gallery_approx;
+	color: $color_gallery_approx;
+}
+
+a, a:hover {
+	text-decoration: none;
+	color: #fff;
+	transition-property: background;
+	transition-duration: 1s;
+}
+.btn {
+	//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	box-shadow: inset 2px -3px $black_15;
+}
+.fullscreen_bg {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-size: cover;
+	background-position: 50% 50%;
+	background-image: $url_0;
+	background-repeat: no-repeat;
+}
+.form-signin {
+	max-width: 280px;
+	padding: 15px;
+	margin: 0 auto;
+	margin-top: 50px;
+	margin-bottom: 10px;
+	.form-signin-heading {
+		margin-bottom: 10px;
+	}
+	.form-control {
+		position: relative;
+		font-size: 16px;
+		height: auto;
+		padding: 10px;
+		//Instead of the line below you could use @include box-sizing($bs)
+		box-sizing: border-box;
+		&:focus {
+			z-index: 2;
+		}
+	}
+	input[type="text"] {
+		margin-bottom: 10px;
+		border-top-style: solid;
+		border-right-style: solid;
+		border-bottom-style: none;
+		border-left-style: solid;
+		border-color: $black;
+	}
+	input[type="password"] {
+		margin-bottom: 10px;
+		border-top-style: none;
+		border-right-style: solid;
+		border-bottom-style: solid;
+		border-left-style: solid;
+		border-color: $black;
+		border-top: 1px solid $black_8;
+	}
+}
+.form-signin-heading {
+	color: $white;
+	text-align: center;
+	//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	text-shadow: 0 2px 2px $black_50;
+}
+.sub-head {
+	color: $white;
+	//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	text-shadow: 0 2px 2px $black_50;
+}
+.sub-head-index {
+	text-align: center;
+	color: $white;
+	//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	text-shadow: 0 2px 2px $black_50;
+}
+.well {
+	min-height: 15px;
+	padding: 5px;
+	margin-bottom: 20px;
+	background-color: $mine_shaft_30;
+	border: none;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 5px;
+	//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	box-shadow: inset 0 1px 1px $black_5;
+}
+.input-group {
+	margin-bottom: 1.5em;
+}
+.input-group-addon {
+	color: $color_gallery_approx;
+	background-color: $teal;
+	border-color: $color_storm_dust_approx;
+}
+.page-head {
+	padding-bottom: 9px;
+	margin: 40px 0 20px;
+}
+#logo {
+	font-family: $font_0, $font_1;
+	font-size: 5em;
+	text-align: center;
+}
+#logo-create {
+	font-family: $font_0, $font_1;
+	font-size: 2em;
+	margin-left: 2em;
+}
+#group-tab {
+	background-color: rgba(50,50,50,0.3);
+	padding: 5px;
+	border-radius: 4px;
+	li {
+	list-style: none;
+	color: red;
+	padding: 3px;
+	}
+}
+
+.msgboard {
+	background-color: rgba(255,255,255,0.9);
+	min-height: 450px;
+	border-radius: 5px;
+}

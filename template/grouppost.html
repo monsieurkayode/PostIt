@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="X-UA Compatible" content="IE-Edge">
-		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Pacifico:400,700&effect=3d-float" rel="stylesheet">
 		
@@ -17,41 +17,90 @@
 					<div class="col-lg-2">
         		<h1 id="logo-create" class="font-effect-3d-float">PostIt</h1>
 					</div>
-					<div class="col-lg-2 pull-right">
-						<h4><span class="glyphicon glyphicon-cog"></span> Account</h4>
+					<div id="user-options" class="col-lg-2 col-lg-offset-8">
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Welcome, User
+								<span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li class="dropdown-header">Activities</li>
+									<li><a href="groupboard.html">Notifications</a></li>
+                  <li><a href="grouppost.html">Broadcast</a></li>
+									<li><a href="creategroup.html">Create Group</a></li>
+									<li class="divider"></li>
+									<li class="dropdown-header">Account Options</li>
+									<li><a href="" data-toggle="modal" data-target="#reset">Reset Password</a></li>
+									<li><a href="index.html">Logout</a></li>
+								</ul>
+						</li>
+					</ul>
 					</div>
-      </div>
-		</div>
+				</div>
 		<div id="create-group" class="container">
 			<div class="row">
-				<div class="col-lg-5 col-lg-offset-3">
+				<div class="col-lg-6 col-lg-offset-3">
 					<h1>Send Broadcast Message</h1>
 				</div>
 			</div>
       <div class="row">
-				<div class="col-lg-5 col-lg-offset-3">
-					<h2><div class="form-group">
+				<div class="col-lg-6 col-lg-offset-3">
+					<h4><div class="form-group">
 							<label for="sel1">Select Group</label>
 							<select class="form-control" id="sel1">
-								<option>Select Group</option>
+								<option>--Select Group--</option>
 								<option>Group1</option>
 								<option>Group2</option>
 								<option>Group3</option>
 							</select>
-					</div></h2>
+					</div></h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-6 col-lg-offset-3">
+					<h4><div class="form-group">
+							<label for="sel2">Message Priority</label>
+							<select class="form-control" id="sel2">
+								<option>--Set Priority--</option>
+								<option>Normal</option>
+								<option class="text-warning">Urgent</option>
+								<option class="text-danger">Critical</option>
+							</select>
+					</div></h4>
 				</div>
 			</div>
       <div class="row">
-				<div class="col-lg-5 col-lg-offset-3">
+				<div class="col-lg-6 col-lg-offset-3">
 					<textarea class="form-control" id='message' rows='10'cols="62" placeholder="Message" required></textarea>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-5 col-lg-offset-3">
+				<div class="col-lg-6 col-lg-offset-3">
 					<h1><span class="btn btn-block btn-lg btn-success">Send Message</span></h1>
 				</div>
 		</div>
-
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		</div>
+		</div>
+		</div>
+		<div class="modal fade bs-example-modal-sm" id="reset" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+					<div class="modal-dialog modal-sm" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title text-info" id="myModalLabel">Reset Password</h4>
+							</div>
+							<div class="modal-body">
+								<input type="text" name="reset-password" placeholder="Enter Email">
+								<button type="button" class="btn btn-primary">Reset</button>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+	
+	<script src="./js/custom.js"></script>
+	<script src="./js/jquery.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
 	</body>
 </html>

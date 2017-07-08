@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>PostIt-Create Group</title>
+		<title>PostIt-Group Board</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="X-UA Compatible" content="IE-Edge">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link href="css/style.css" rel="stylesheet">
+		<link href="./css/bootstrap.min.css" rel="stylesheet">
+		<link href="./css/style.css" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Pacifico:400,700&effect=3d-float" rel="stylesheet">
 		
 	</head>
@@ -23,47 +23,52 @@
 							<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Welcome, User
 								<span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li class="dropdown-header">Activities</li>
+                  <li class="dropdown-header">Activities</li>
 									<li><a href="groupboard.html">Notifications</a></li>
                   <li><a href="grouppost.html">Broadcast</a></li>
-									<li><a href="creategroup.html">Create Group</a></li>
+                  <li><a href="creategroup.html">Create Group</a></li>
 									<li class="divider"></li>
 									<li class="dropdown-header">Account Options</li>
-									<li><a data-toggle="modal" data-target="#reset" href="">Reset Password</a></li>
+									<li><a href="">Reset Password</a></li>
 									<li><a href="index.html">Logout</a></li>
 								</ul>
 						</li>
 					</ul>
 					</div>
-
-						
-					</div>
       </div>
-		</div>
-		<div id="create-group" class="container">
-			<div class="row">
-				<div class="col-lg-5 col-lg-offset-3">
-					<h1>Create Broadcast Group</h1>
-					<input type="text" class="form-control" placeholder="Enter group name">
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-5 col-lg-offset-3">
-					<h4><div class="form-group">
-							<label for="sel1">Select Users</label>
-							<select class="form-control" id="sel1">
-								<option>Select User</option>
-								<option>User1</option>
-								<option>User2</option>
-								<option>User3</option>
-							</select>
-					</div></h4>
-					<span class="btn btn-lg btn-info">Add User</span>
-					<h1><span class="btn btn-block btn-lg btn-success">Create Group</span></h1>
-				</div>
-			</div>
-		</div>
-		<div class="modal fade bs-example-modal-sm" id="reset" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+
+  </div>
+  <div class="container-fluid">
+    <div class="col-lg-3">
+      <h4>Groups</h4>
+      <hr>
+      <h4><ul id="group-tab">
+        <li><a href="">Android Itachi</a></li>
+        <li><a href="">Java Fundamentals</a></li>
+        <li><a href="">Python Nigeria</a></li>
+        <li><a href="">Angular Developers</a></li>
+      </ul></h4>
+    </div>
+
+    <div class="col-lg-6">
+      <h4>Message Board</h4>
+      <hr>
+      <div class="msgboard">
+
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <h4>Recent Activities</h4>
+      <hr>
+      <p><a href="">Unread Notifications(5)</a></p>
+      <p><a href="">Read Notifications</a></p>
+      <hr>
+      <p>New broadcast from @structor Java Fundamentsals</p>
+    </div>
+  </div>
+  </div>
+  </div>
+  <div class="modal fade bs-example-modal-sm" id="reset" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
 					<div class="modal-dialog modal-sm" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -80,9 +85,9 @@
 						</div>
 					</div>
 				</div>
-				
-	<script src="./js/custom.js"></script>
-	<script src="./js/jquery.min.js"></script>
+        
+  <script src="./js/custom.js"></script>
+  <script src="./js/jquery.min.js"></script>
 	<script src="./js/bootstrap.min.js"></script>
 	</body>
 </html>
