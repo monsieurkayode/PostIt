@@ -13,9 +13,9 @@
 	<body>
 		<div id="fullscreen_bg" class="fullscreen_bg"/>
 			<div class="container">
-				<h1 id="logo" class="font-effect-3d-float">PostIt</h1>
+				<a href="#"><h1 id="logo" class="font-effect-3d-float"><span><img src="css/img/logo.png"></span>PostIt</h1></a>
 				<h3 class="sub-head-index">Connecting and Sharing has never been more Fun</h3>
-				<form class="form-signin well">
+				<form class="form-signin well" action="groupboard.html">
 					<h1 class="form-signin-heading text-muted">Login</h1>
 					<input type="text" class="form-control" placeholder="Username or Email" required="true" autofocus="true">
 					<input type="password" class="form-control" placeholder="Password" required="true">
@@ -23,18 +23,35 @@
 						Login
 					</button>
 					<div class="checkbox">
-    				<p><label><input type="checkbox"> Remember me </label><span><a>Forgot Password?</a></span></p>
+    				<p class="text-center"><label><input type="checkbox"> Remember me </label></p>
+						<p style="cursor:pointer" class="text-center bg-muted" data-toggle="modal" data-target="#reset">Forgot Password?</p>
   				</div>
 					<p class="text-center">Dont have an Account?</p>
-					<p class="text-center">Register <a href="" alt="">here</a></p>
-					<button class="btn btn-lg btn-success btn-block" type="submit">
-						Register
-					</button>
+					<p class="text-center btn-info"><a class="" href="register.html" alt="">Register here</a></p>
 				</form>
+						
 			</div>
 		</div>
-
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+		<div class="modal fade bs-example-modal-sm" id="reset" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+					<div class="modal-dialog modal-sm" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title text-info" id="myModalLabel">Reset Password</h4>
+							</div>
+							<div class="modal-body">
+								<input type="text" name="reset-password" placeholder="Enter Email">
+								<button type="button" class="btn btn-primary">Reset</button>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+	
+	<script src="./js/custom.js"></script>
+	<script src="./js/jquery.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
 	</body>
 </html>
