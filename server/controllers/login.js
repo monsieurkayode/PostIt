@@ -1,4 +1,4 @@
-const PostIt = require('../models').PostIt;
+const PostIt = require('../models').postit;
 
 module.exports = {
   findUser(req, res) {

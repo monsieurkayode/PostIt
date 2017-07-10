@@ -11,6 +11,7 @@ app.use(logger('dev'));
 // Parse incoming requests data (https://github.com/expressjs/body-parser)
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.disable('x-powered-by');
 
 
 require('./server/routes')(app);

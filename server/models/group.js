@@ -10,16 +10,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    creatorUsername: {
+    groupAdmin: {
       type: DataTypes.STRING,
       allowNull: false,
     },
   }, {
     classMethods: {
       associate: (models) => {
-        // associations can be defined here
         group.belongsTo(models.PostIt, {
-          foreignKey: 'creatorUsername',
+          foreignKey: 'userId',
           onDelete: 'CASCADE',
         });
         group.hasMany(models.groupMembers, {

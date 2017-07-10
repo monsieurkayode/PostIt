@@ -16,9 +16,13 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      creatorUser: {
+      groupAdmin: {
         type: Sequelize.STRING,
         allowNull: false
+      },
+      groupId: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
       },
       createdAt: {
         allowNull: false,
