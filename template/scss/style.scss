@@ -27,7 +27,7 @@ body {
 	color: $color_gallery_approx;
 }
 
-a, a:hover {
+a {
 	text-decoration: none;
 	color: #fff;
 	transition-property: background;
@@ -151,4 +151,8 @@ a, a:hover {
 	background-color: rgba(255,255,255,0.9);
 	min-height: 450px;
 	border-radius: 5px;
+}
+
+.return {
+	color: #000;
 }
