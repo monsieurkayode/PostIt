@@ -1,6 +1,7 @@
-'use strict';
+
+
 module.exports = (sequelize, DataTypes) => {
-  const PostIt = sequelize.define('PostIt', {
+  const PostIt = sequelize.define('PostIts', {
     username: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -16,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
     },
     phone: {
-      type: DataTypes.CHAR,
+      type: DataTypes.STRING,
       allowNull: false,
     }
   }, {

@@ -1,4 +1,3 @@
-'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) =>
     queryInterface.createTable('groups', {
@@ -23,6 +22,11 @@ module.exports = {
       groupId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
+        references: {
+          model: 'PostIts',
+          key: 'id',
+          as: 'userId'
+        },
       },
       createdAt: {
         allowNull: false,
@@ -33,5 +37,5 @@ module.exports = {
         type: Sequelize.DATE
       }
     }),
-  down: (queryInterface) => queryInterface.dropTable('groups'),
+  down: queryInterface => queryInterface.dropTable('groups'),
 };

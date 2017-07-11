@@ -1,7 +1,6 @@
-'use strict';
 module.exports = {
-  up: (queryInterface, Sequelize) => 
-     queryInterface.createTable('PostIts', {
+  up: (queryInterface, Sequelize) =>
+    queryInterface.createTable('PostIts', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -23,7 +22,7 @@ module.exports = {
         unique: true,
       },
       phone: {
-        type: Sequelize.BIGINT,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       createdAt: {
@@ -35,5 +34,5 @@ module.exports = {
         type: Sequelize.DATE
       }
     }),
-  down: (queryInterface) => queryInterface.dropTable('PostIts'),
+  down: queryInterface => queryInterface.dropTable('PostIts'),
 };

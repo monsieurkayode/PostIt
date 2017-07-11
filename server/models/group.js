@@ -1,4 +1,3 @@
-'use strict';
 module.exports = (sequelize, DataTypes) => {
   const group = sequelize.define('groups', {
     name: {
@@ -21,10 +20,10 @@ module.exports = (sequelize, DataTypes) => {
           foreignKey: 'userId',
           onDelete: 'CASCADE',
         });
-        group.hasMany(models.groupMembers, {
-          foreignKey: 'groupId',
-          as: 'groupMembers',
-        });
+        // group.hasMany(models.groupMembers, {
+        //   foreignKey: 'groupId',
+        //   as: 'groupMembers',
+        // });
       },
     },
   });

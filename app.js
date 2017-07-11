@@ -15,9 +15,10 @@ app.disable('x-powered-by');
 
 
 require('./server/routes')(app);
-app.use(express.static('template'))
 
-// Setup a default catch-all route that sends back a welcome message in JSON format.
+app.use(express.static('template'));
+
+
 app.get('*', (req, res) => res.status(200).send({
   message: 'No page found',
 }));
