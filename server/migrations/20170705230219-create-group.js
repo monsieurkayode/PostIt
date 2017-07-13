@@ -21,7 +21,7 @@ module.exports = {
         reference: {
           model: 'User',
           key: 'User',
-          as: 'userName',
+          as: 'groupAdmin',
         },
       },
       createdAt: {
