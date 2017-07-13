@@ -10,15 +10,14 @@ import messageController from '../controllers/message';
 import userGroupController from '../controllers/usergroup';
 
 const app = express.Router();
-// app.get('/', (req, res) => res.status(200).send({
-//   message: 'Status connected ok',
-// }));
+app.get('/', (req, res) => res.status(200).send({
+  message: 'Status connected ok',
+}));
 
 app.post('/api/user/signup', userController.signup);
 app.post('/api/user/signin', loginController.signin);
-
 app.get('/api/users', userController.allUsers);
-
+app.get('/api/userGroups', userController.userGroups);
 app.post('/api/group', groupController.create);
 app.get('/api/groups', groupController.allGroups);
 app.post('/api/group/:groupId/message', messageController.create);
