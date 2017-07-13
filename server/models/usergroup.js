@@ -1,6 +1,10 @@
-
-
-module.exports = (sequelize, DataTypes) => {
+/**
+ * @param  {object} sequelize
+ * @param  {object} DataTypes
+ * @description creating model for usergroups
+ * @return {object} usergroup model
+ */
+const UserGroupModel = (sequelize, DataTypes) => {
   const UserGroup = sequelize.define('UserGroup', {
     userId: {
       type: DataTypes.INTEGER,
@@ -16,3 +20,5 @@ module.exports = (sequelize, DataTypes) => {
   });
   return UserGroup;
 };
+
+export default UserGroupModel;

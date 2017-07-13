@@ -1,4 +1,9 @@
-const Message = require('../models').Message;
+/**
+ * Import Module dependencies
+ */
+import db from '../models/index';
+
+const Message = db.Message;
 
 module.exports = {
   create(req, res) {
@@ -6,13 +11,13 @@ module.exports = {
       .create({
         message: req.body.message,
         groupId: req.params.groupId,
-        author: req.body.author,
+        username: req.body.username,
       })
       .then(message => res.status(201).json(message))
       .catch(error => res.status(400).json(error));
   },
 
-  findMessages(req, res) {
+  findGroupMessages(req, res) {
     return Message
       .findAll({ where: { groupId: req.params.groupId } })
       .then(message => res.status(200).json(message))

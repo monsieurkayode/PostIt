@@ -1,6 +1,10 @@
-
-
-module.exports = (sequelize, DataTypes) => {
+/**
+ * @param  {object} sequelize
+ * @param  {object} DataTypes
+ * @description creating model for messages
+ * @return {object} message model
+ */
+const MessageModel = (sequelize, DataTypes) => {
   const Message = sequelize.define('Message', {
     message: {
       type: DataTypes.STRING,
@@ -10,16 +14,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    author: {
+    username: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
   }, {
     classMethods: {
-      // associate: (models) => {
-      //   Message.belongsTo(models.Group);
-      // }
     },
   });
   return Message;
 };
+
+export default MessageModel;

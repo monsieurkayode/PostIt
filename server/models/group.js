@@ -1,9 +1,14 @@
-module.exports = (sequelize, DataTypes) => {
+/**
+ * @param  {object} sequelize
+ * @param  {object} DataTypes
+ * @description creating model for groups
+ * @return {object} group model
+ */
+const GroupModel = (sequelize, DataTypes) => {
   const Group = sequelize.define('Group', {
     groupName: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
     },
     description: {
       type: DataTypes.STRING,
@@ -25,3 +30,5 @@ module.exports = (sequelize, DataTypes) => {
   });
   return Group;
 };
+
+export default GroupModel;

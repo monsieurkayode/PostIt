@@ -1,36 +1,29 @@
-const session = require('express-session');
-const userController = require('../controllers').user;
-const loginController = require('../controllers').login;
-const groupController = require('../controllers').group;
-const messageController = require('../controllers').message;
-//const userGroupController = require('../controllers').usergroup;
+/**
+ * Import Module dependencies
+ */
+import express from 'express';
+import cookieParser from 'cookie-parser';
+import userController from '../controllers/user';
+import loginController from '../controllers/login';
+import groupController from '../controllers/group';
+import messageController from '../controllers/message';
 
-const secret = 'zxerth5603/@';
-const resave = false;
-const saveUninitialized = true;
-module.exports = (app) => {
-  app.get('/api', (req, res) => res.status(200).send({
-    message: 'Create Account',
-  }));
+const app = express.Router();
+// app.get('/', (req, res) => res.status(200).send({
+//   message: 'Status connected ok',
+// }));
 
-  app.post('/api/user/signup', userController.signup);
-  app.post('/api/user/signin', loginController.signin);
+app.post('/api/user/signup', userController.signup);
+app.post('/api/user/signin', loginController.signin);
 
-  app.use(session({ secret, resave, saveUninitialized }));
+app.get('/api/users', userController.allUsers);
 
-  
-  app.get('/api/users', userController.allUsers);
-  
-  app.post('/api/group', groupController.create);
-  app.get('/api/groups', groupController.allGroups);
-  app.post('/api/group/:groupId/message', messageController.create);
-  app.get('/api/group/:groupId/message', messageController.findMessages);
-  app.get('/api/group/messages', messageController.allMessages);
-  app.post('/api/group/:groupId/user', groupController.addUser);
-  app.get('/api/group/:groupId/user', groupController.addUser);
+app.post('/api/group', groupController.create);
+app.get('/api/groups', groupController.allGroups);
+app.post('/api/group/:groupId/message', messageController.create);
+app.get('/api/group/:groupId/message', messageController.findGroupMessages);
+app.get('/api/group/messages', messageController.allMessages);
+app.post('/api/group/:groupId/user', groupController.addUser);
+app.get('/api/group/:groupId/user', groupController.findGroupMembers);
 
-
-  // app.use('/api/group/*', () => {
-  //   if 
-  // })
-};
+export default app;
