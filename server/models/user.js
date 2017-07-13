@@ -64,9 +64,9 @@ const UserModel = (sequelize, DataTypes) => {
 
     classMethods: {
       associate: (models) => {
-        User.belongsToMany(models.Group, {
-          through: 'UserGroup',
-          foreignKey: 'userId',
+        User.hasMany(models.Group, {
+          foreignKey: 'User',
+          as: 'Groups',
         });
       },
     },

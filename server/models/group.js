@@ -17,12 +17,12 @@ const GroupModel = (sequelize, DataTypes) => {
   }, {
     classMethods: {
       associate: (models) => {
-        Group.belongsToMany(models.User, {
-          through: 'UserGroup',
-          foreignKey: 'groupId',
+        Group.belongsTo(models.User, {
+          foreignKey: 'groupAdmin',
+          onDelete: 'CASCADE'
         });
-        Group.hasMany(models.Message, {
-          as: 'Messages',
+        Group.hasMany(models.UserGroup, {
+          as: 'UserGroups',
           foreignKey: 'groupId',
         });
       },
