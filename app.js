@@ -6,7 +6,6 @@ import logger from 'morgan';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import session from 'express-session';
-import cookieParser from 'cookie-parser';
 import route from './server/routes';
 
 dotenv.load();

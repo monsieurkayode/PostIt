@@ -3,6 +3,7 @@
  */
 import db from '../models/index';
 
+// Declare variable for Usergroup
 const UserGroup = db.Usergroup;
 
 const addToGroup = {

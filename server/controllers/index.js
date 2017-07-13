@@ -1,3 +1,6 @@
+/**
+ * Import Module dependencies
+ */
 import { user } from './user';
 import { login } from './login';
 import { group } from './group';

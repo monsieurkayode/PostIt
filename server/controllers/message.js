@@ -5,7 +5,7 @@ import db from '../models/index';
 
 const Message = db.Message;
 
-module.exports = {
+const createMessage = {
   create(req, res) {
     return Message
       .create({
@@ -30,3 +30,5 @@ module.exports = {
       .catch(error => res.status(400).json(error));
   },
 };
+
+export default createMessage;
