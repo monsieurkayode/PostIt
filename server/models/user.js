@@ -1,8 +1,13 @@
 
 
 module.exports = (sequelize, DataTypes) => {
-  const PostIt = sequelize.define('PostIts', {
+  const User = sequelize.define('User', {
     username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
@@ -11,24 +16,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
-    phone: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    }
   }, {
     classMethods: {
       associate: (models) => {
-        PostIt.hasMany(models.group, {
+        User.belongsToMany(models.Group, {
+          as: 'Users',
+          through: 'UserGroup',
           foreignKey: 'userId',
-          as: 'groups',
         });
+        // User.hasMany(models.Message, {
+        //   as: 'Messages',
+        // });
       },
     },
   });
-  return PostIt;
+  return User;
 };

@@ -1,9 +1,13 @@
 const user = require('./user');
 const login = require('./login');
-// const groupMembers = require('./groupMember');
+const group = require('./group');
+const message = require('./message');
+const usergroup = require('./usergroup');
 
 module.exports = {
   user,
   login,
-  // groupMembers
+  group,
+  message,
+  usergroup
 };

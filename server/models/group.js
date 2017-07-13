@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const group = sequelize.define('groups', {
-    name: {
+  const Group = sequelize.define('Group', {
+    groupName: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
@@ -9,23 +9,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    groupAdmin: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
   }, {
     classMethods: {
       associate: (models) => {
-        group.belongsTo(models.PostIt, {
-          foreignKey: 'userId',
-          onDelete: 'CASCADE',
+        Group.belongsToMany(models.User, {
+          through: 'UserGroup',
+          foreignKey: 'groupId',
         });
-        // group.hasMany(models.groupMembers, {
-        //   foreignKey: 'groupId',
-        //   as: 'groupMembers',
-        // });
+        Group.hasMany(models.Message, {
+          as: 'Messages',
+          foreignKey: 'groupId',
+        });
       },
     },
   });
-  return group;
+  return Group;
 };

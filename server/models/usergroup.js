@@ -1,7 +1,8 @@
-'use strict';
+
+
 module.exports = (sequelize, DataTypes) => {
-  const groupMember = sequelize.define('groupMembers', {
-    memberId: {
+  const UserGroup = sequelize.define('UserGroup', {
+    userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -13,5 +14,5 @@ module.exports = (sequelize, DataTypes) => {
     classMethods: {
     },
   });
-  return groupMember;
+  return UserGroup;
 };

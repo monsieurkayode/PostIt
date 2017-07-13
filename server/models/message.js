@@ -1,25 +1,25 @@
-'use strict';
+
+
 module.exports = (sequelize, DataTypes) => {
-  const groupPost = sequelize.define('groupPosts', {
+  const Message = sequelize.define('Message', {
     message: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    messageId: {
+    groupId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    postUsername: {
+    author: {
       type: DataTypes.STRING,
-      allowNull: false,
-    },
-    memberId: {
-      type: DataTypes,
       allowNull: false,
     },
   }, {
     classMethods: {
+      // associate: (models) => {
+      //   Message.belongsTo(models.Group);
+      // }
     },
   });
-  return groupPost;
+  return Message;
 };
