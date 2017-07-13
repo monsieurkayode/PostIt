@@ -11,7 +11,7 @@ const User = db.User;
 const secret = process.env.secretKey;
 
 
-module.exports = {
+const login = {
   signin(req, res) {
     if (!req.body.username) {
       return res.status(400).json({
@@ -42,3 +42,5 @@ module.exports = {
       });
   }
 };
+
+export default login;
