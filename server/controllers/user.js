@@ -11,9 +11,19 @@ const User = db.User;
 
 const createUser = {
   signup(req, res) {
-    if (!req.body.username || !req.body.email || !req.body.password) {
+    if (!req.body.username) {
       return res.status(400).json({
-        error: 'Username, Email, and Password must not be empty'
+        error: 'Username not be empty'
+      });
+    }
+    if (!req.body.email) {
+      return res.status(400).json({
+        error: 'Email must not be empty'
+      });
+    }
+    if (!req.body.password) {
+      return res.status(400).json({
+        error: 'Password must not be empty'
       });
     }
     return User

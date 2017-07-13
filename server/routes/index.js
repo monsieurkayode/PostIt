@@ -7,6 +7,7 @@ import userController from '../controllers/user';
 import loginController from '../controllers/login';
 import groupController from '../controllers/group';
 import messageController from '../controllers/message';
+import userGroupController from '../controllers/usergroup';
 
 const app = express.Router();
 // app.get('/', (req, res) => res.status(200).send({
@@ -25,5 +26,7 @@ app.get('/api/group/:groupId/message', messageController.findGroupMessages);
 app.get('/api/group/messages', messageController.allMessages);
 app.post('/api/group/:groupId/user', groupController.addUser);
 app.get('/api/group/:groupId/user', groupController.findGroupMembers);
+app.post('/api/group/:groupId/user', userGroupController.addGroupUser);
+//app.get('/api/group/:groupId/user', userGroupController.addGroupUser);
 
 export default app;

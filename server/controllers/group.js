@@ -3,8 +3,6 @@
  */
 import db from '../models/index';
 
-const User = db.User;
-const Usergroup = db.UserGroup;
 const Group = db.Group;
 
 const createGroup = {
