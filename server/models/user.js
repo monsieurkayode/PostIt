@@ -65,7 +65,6 @@ const UserModel = (sequelize, DataTypes) => {
     classMethods: {
       associate: (models) => {
         User.hasMany(models.Group, {
-          foreignKey: 'User',
           as: 'Groups',
         });
       },

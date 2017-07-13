@@ -15,13 +15,12 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      userName: {
+      UserId: {
         type: Sequelize.STRING,
         onDelete: 'CASCADE',
         reference: {
           model: 'User',
-          key: 'User',
-          as: 'groupAdmin',
+          key: 'id',
         },
       },
       createdAt: {

@@ -18,7 +18,6 @@ const GroupModel = (sequelize, DataTypes) => {
     classMethods: {
       associate: (models) => {
         Group.belongsTo(models.User, {
-          foreignKey: 'groupAdmin',
           onDelete: 'CASCADE'
         });
         Group.hasMany(models.UserGroup, {

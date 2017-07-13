@@ -1,13 +1,9 @@
 /**
  * Import Module dependencies
  */
-import jwt from 'jsonwebtoken';
 import db from '../models/index';
 
-
 const Group = db.Group;
-const Message = db.Message;
-const members = db.UserGroup;
 
 const createGroup = {
   create(req, res) {
@@ -17,14 +13,7 @@ const createGroup = {
         description: req.body.description,
       })
       .then(group => res.status(200).send(group))
-        // members
-        //   .create({
-        //     userId: req.decoded.user.userId,
-        //     groupId: req.body.groupId,
-        //   })
-        //   .then(member => res.status(200)
-        //     .json({ message: `Successfully created group by ${member.id}`, })
-            .catch(error => res.status(400).json(error));
+      .catch(error => res.status(400).json(error));
   },
   allGroups(req, res) {
     return Group
