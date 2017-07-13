@@ -1,23 +1,26 @@
 /**
  * Import Module dependencies
  */
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import db from '../models/index';
-// const group = require('../models').groups;
-// const groupMember = require('../models').groupMembers;
-// const groupPost = require('../models').groupPosts;
 
+dotenv.load();
 const User = db.User;
-const Group = db.Group;
-const UserGroup = db.UserGroup;
-const Message = db.Message;
-console.log(User, Group, UserGroup, Message);
+const secret = process.env.secretKey;
 
-module.exports = {
+
+const login = {
   signin(req, res) {
-    if (!req.body.username || !req.body.password) {
+    if (!req.body.username) {
       return res.status(400).json({
-        error: 'Username or Password must not be empty'
+        error: 'Username must not be empty'
+      });
+    }
+    if (!req.body.password) {
+      return res.status(400).json({
+        error: 'Password must not be empty'
       });
     }
     return User
@@ -27,11 +30,17 @@ module.exports = {
           return res.status(401).json({ message: 'Invalid Auth Details' });
         }
         const check = bcrypt.compareSync(req.body.password, user.password);
-        if (check && req.session) {
-          return res.status(202).json({ message: 'Welcome to PostIt', user });
+        if (check) {
+          const token = jwt.sign({ user }, secret);
+          res.status(200).json({
+            success: true,
+            message: 'Token generated successfully',
+            Token: token,
+          })
+            .catch(error => res.status(404).send(error));
         }
-        return res.status(401)
-          .json({ message: 'Invalid Auth Details' });
       });
-  },
+  }
 };
+
+export default login;

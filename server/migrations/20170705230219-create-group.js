@@ -1,4 +1,4 @@
-module.exports = {
+const GroupTable = {
   up: (queryInterface, Sequelize) =>
     queryInterface.createTable('Groups', {
       id: {
@@ -15,6 +15,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
+      UserId: {
+        type: Sequelize.STRING,
+        onDelete: 'CASCADE',
+        reference: {
+          model: 'User',
+          key: 'id',
+        },
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -26,3 +34,5 @@ module.exports = {
     }),
   down: queryInterface => queryInterface.dropTable('Groups'),
 };
+
+export default GroupTable;

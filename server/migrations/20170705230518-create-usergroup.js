@@ -1,5 +1,5 @@
 
-module.exports = {
+const UserGroupTable = {
   up: (queryInterface, Sequelize) =>
     queryInterface.createTable('UserGroups', {
       id: {
@@ -27,3 +27,5 @@ module.exports = {
     }),
   down: queryInterface => queryInterface.dropTable('UserGroups'),
 };
+
+export default UserGroupTable;
