@@ -1,8 +1,9 @@
+import { should, expect, assert } from 'chai';
 import supertest from 'supertest';
-import mocha from 'mocha';
+import 'mocha';
 import app from '../../app';
 import models from '../models';
-import { should, expect, assert } from 'chai';
+
 
 const server = supertest.agent(app);
 
@@ -11,6 +12,14 @@ const jane = {
   password: 'password',
   email: 'janeDoe@gmail.com'
 };
+
+before((done) => {
+  models.sequelize.sync({ force: true }).then(() => {
+    done(null);
+  }).catch((errors) => {
+    done(errors);
+  });
+});
 
 describe('User Registration', () => {
   it('allows a new user to register', () => {
@@ -24,9 +33,9 @@ describe('User Registration', () => {
       .end((err, res) => {
         res.status.should.equal(201);
         res.body.success.should.equal(true);
-        done();
       });
   });
+});
 
 describe('User Login', () => {
   it('allows a new user to register', () => {
@@ -40,7 +49,6 @@ describe('User Login', () => {
       .end((err, res) => {
         res.status.should.equal(200);
         res.body.success.should.equal(true);
-        done();
       });
   });
-
+});
