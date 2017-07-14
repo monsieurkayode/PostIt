@@ -1,10 +1,6 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "sadeeq",
-    "database": "post_it",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "use_env_variable": "postgres://wjqdwoxi:uZv6CXjwkRofr2Sp8cnsoGC6Q9lK31i0@pellefant.db.elephantsql.com:5432/wjqdwoxi"
   },
   "test": {
     "username": "postgres",
