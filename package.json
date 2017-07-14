@@ -1,5 +1,5 @@
 {
-  "name": "postit",
+  "name": "PostIt",
   "version": "1.0.0",
   "description": "A repository for PostIt application project",
   "main": "app.js",
@@ -9,7 +9,7 @@
     "start:dev": "nodemon ./bin/www",
     "migrate": "./node_modules/.bin/sequelize db:migrate",
     "unmigrate": "./node_modules/.bin/sequelize db:migrate:undo:all",
-    "test": "SET NODE_ENV=test&& mocha --timeout 40000 --compilers js:babel-core/register server/test/test.js"
+    "test": "NODE_ENV=test && mocha --timeout 40000 --compilers js:babel-core/register server/test/test.js"
   },
   "repository": {
     "type": "git",

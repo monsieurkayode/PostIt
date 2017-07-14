@@ -33,9 +33,7 @@ const login = {
         if (check) {
           const token = jwt.sign({ user }, secret);
           res.status(200).json({
-            success: true,
-            message: 'Token generated successfully',
-            Token: token,
+            message: `Welcome to PostIt ${user.username}`,
           })
             .catch(error => res.status(404).send(error));
         }

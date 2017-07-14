@@ -46,10 +46,7 @@ const createUser = {
           }, secret
         );
         res.status(201).json({
-          success: true,
-          message: 'Token generated successfully',
-          Token: token,
-          user
+          message: `Account Created, Welcome ${user.username}`,
         });
       })
       .catch(error => res.status(400).json(error));

@@ -6,11 +6,11 @@ import { should, expect, assert } from 'chai';
 
 const server = supertest.agent(app);
 
-const jane = [{
+const jane = {
   username: 'janeDoe',
   password: 'password',
   email: 'janeDoe@gmail.com'
-}];
+};
 
 describe('User Registration', () => {
   it('allows a new user to register', () => {
@@ -19,7 +19,7 @@ describe('User Registration', () => {
       .set('Connection', 'keep alive')
       .set('Content-Type', 'application/json')
       .type('form')
-      .send(jane[0])
+      .send(jane)
       .expect(201)
       .end((err, res) => {
         res.status.should.equal(201);
@@ -35,7 +35,7 @@ describe('User Login', () => {
       .set('Connection', 'keep alive')
       .set('Content-Type', 'application/json')
       .type('form')
-      .send(jane[0])
+      .send(jane)
       .expect(200)
       .end((err, res) => {
         res.status.should.equal(200);
