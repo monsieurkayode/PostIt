@@ -1,5 +1,5 @@
 
-const MessageTable = {
+module.exports = {
   up: (queryInterface, Sequelize) =>
     queryInterface.createTable('Messages', {
       id: {
@@ -32,4 +32,3 @@ const MessageTable = {
   down: queryInterface => queryInterface.dropTable('Messages'),
 };
 
-export default MessageTable;

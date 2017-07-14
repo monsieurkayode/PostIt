@@ -1,4 +1,4 @@
-const UserTable = {
+module.exports = {
   up: (queryInterface, Sequelize) =>
     queryInterface.createTable('Users', {
       id: {
@@ -33,4 +33,3 @@ const UserTable = {
   down: queryInterface => queryInterface.dropTable('Users'),
 };
 
-export default UserTable;
