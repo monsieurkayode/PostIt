@@ -4,11 +4,7 @@ body {
   background-color: #fff;
   color: #fff; }
 
-<<<<<<< HEAD
-a, a:hover {
-=======
 a {
->>>>>>> template
   text-decoration: none;
   color: #fff;
   transition-property: background;
@@ -119,10 +115,7 @@ a {
   min-height: 450px;
   border-radius: 5px; }
 
-<<<<<<< HEAD
-=======
 .return {
   color: #000; }
 
->>>>>>> template
 /*# sourceMappingURL=style.css.map */

@@ -14,7 +14,8 @@ const createGroup = {
         groupName: req.body.groupName,
         description: req.body.description,
       })
-      .then(group => res.status(200).send(group))
+      .then(group => res.status(200)
+        .send({ message: `Successfully created ${group.groupName}` }))
       .catch(error => res.status(400).json(error));
   },
 
