@@ -1,12 +1,12 @@
-{
+ {
   "development": {
-    "use_env_variable": "postgres://wjqdwoxi:uZv6CXjwkRofr2Sp8cnsoGC6Q9lK31i0@pellefant.db.elephantsql.com:5432/wjqdwoxi"
+    "use_env_variable": "DATABASE_URL"
   },
   "test": {
-    "username": "postgres",
-    "password": "sadeeq",
-    "database": "post_it",
-    "host": "127.0.0.1",
+    "use_env_variable": "DATABASE_TEST_URL",
     "dialect": "postgres"
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL"
   }
 }
