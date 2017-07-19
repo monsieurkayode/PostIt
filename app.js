@@ -6,6 +6,11 @@ import logger from 'morgan';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import route from './server/routes';
+//import sequelize from './server/models';
+
+// sequelize.sync({
+//   force: true
+// });
 
 dotenv.load();
 // Set up the express app

@@ -11,7 +11,7 @@ const createMessage = {
       .create({
         message: req.body.message,
         groupId: req.params.groupId,
-        username: req.body.username,
+        sender: req.body.sender,
       })
       .then(message => res.status(201).json(message))
       .catch(error => res.status(400).json(error));
@@ -20,13 +20,13 @@ const createMessage = {
   findGroupMessages(req, res) {
     return Message
       .findAll({ where: { groupId: req.params.groupId } })
-      .then(message => res.status(200).json(message))
+      .then(messages => res.status(200).json(messages))
       .catch(error => res.status(400).json(error));
   },
   allMessages(req, res) {
     return Message
       .findAll()
-      .then(message => res.status(200).json(message))
+      .then(messages => res.status(200).json(messages))
       .catch(error => res.status(400).json(error));
   },
 };

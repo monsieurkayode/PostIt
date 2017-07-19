@@ -15,7 +15,7 @@ const createGroup = {
         description: req.body.description,
       })
       .then(group => res.status(200)
-        .send({ message: `Successfully created ${group.groupName}` }))
+        .send({ message: `Successfully created ${group.groupName}`, group }))
       .catch(error => res.status(400).json(error));
   },
 
@@ -63,7 +63,7 @@ const createGroup = {
       .then((group) => {
         group.getUser(req.body.userId)
           .then(() => {
-            res.status(200).json({ message: `Success ${group.userId}` });
+            res.status(200).json(group);
           })
           .catch(error => res.status(400).json(error));
       });

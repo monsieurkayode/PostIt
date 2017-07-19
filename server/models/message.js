@@ -4,7 +4,7 @@
  * @description creating model for messages
  * @return {object} message model
  */
-const MessageModel = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const Message = sequelize.define('Message', {
     message: {
       type: DataTypes.STRING,
@@ -14,7 +14,7 @@ const MessageModel = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    username: {
+    sender: {
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -25,4 +25,4 @@ const MessageModel = (sequelize, DataTypes) => {
   return Message;
 };
 
-export default MessageModel;
+// export default MessageModel;

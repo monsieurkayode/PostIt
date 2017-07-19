@@ -4,7 +4,7 @@
  * @description creating model for groups
  * @return {object} group model
  */
-const GroupModel = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const Group = sequelize.define('Group', {
     groupName: {
       type: DataTypes.STRING,
@@ -18,11 +18,14 @@ const GroupModel = (sequelize, DataTypes) => {
     classMethods: {
       associate: (models) => {
         Group.belongsTo(models.User, {
-          onDelete: 'CASCADE'
+          // foreignKey: 'userId',
+          foreignKey: 'groupAdmin',
+          // as: 'groupAdmin'
         });
-        Group.hasMany(models.UserGroup, {
-          as: 'UserGroups',
+        Group.hasMany(models.GroupMember, {
           foreignKey: 'groupId',
+          as: 'groupMembers'
+          // constraints: false
         });
       },
     },
@@ -30,4 +33,4 @@ const GroupModel = (sequelize, DataTypes) => {
   return Group;
 };
 
-export default GroupModel;
+// export default GroupModel;

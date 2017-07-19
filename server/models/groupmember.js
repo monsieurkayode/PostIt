@@ -4,9 +4,9 @@
  * @description creating model for usergroups
  * @return {object} usergroup model
  */
-const UserGroupModel = (sequelize, DataTypes) => {
-  const UserGroup = sequelize.define('UserGroup', {
-    userId: {
+module.exports = (sequelize, DataTypes) => {
+  const GroupMember = sequelize.define('GroupMember', {
+    memberId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -18,7 +18,7 @@ const UserGroupModel = (sequelize, DataTypes) => {
     classMethods: {
     },
   });
-  return UserGroup;
+  return GroupMember;
 };
 
-export default UserGroupModel;
+// export default GroupMemberModel;

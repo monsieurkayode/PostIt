@@ -5,31 +5,35 @@ import bcrypt from 'bcrypt';
  * @description creating model for users
  * @return {object} user model
  */
-const UserModel = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    lasttName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: {
         args: true,
         msg: 'Username already exists',
-        fields: [sequelize.fn('lower', sequelize.col('username'))],
       },
       validate: {
         min: {
           args: 3,
           msg: 'Username too short',
-          fields: [sequelize.fn('lower', sequelize.col('username'))],
         },
         max: {
           args: 30,
           msg: 'Username too long',
-          fields: [sequelize.fn('lower', sequelize.col('username'))],
         },
         is: {
           args: /^[A-Za-z0-9]+$/i,
           msg: 'Username must contain letter and numbers only',
-          fields: [sequelize.fn('lower', sequelize.col('username'))],
         }
       },
     },
@@ -39,7 +43,6 @@ const UserModel = (sequelize, DataTypes) => {
       unique: {
         args: true,
         msg: 'Email already exists',
-        fields: [sequelize.fn('lower', sequelize.col('email'))],
       },
       validate: {
         isEmail: {
@@ -52,6 +55,15 @@ const UserModel = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    // groupId: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    //   references: {
+    //     model: 'Groups',
+    //     key: 'id',
+    //     as: 'groupId'
+    //   },
+    // },
   }, {
     hooks: {
       beforeCreate: (user) => {
@@ -65,7 +77,9 @@ const UserModel = (sequelize, DataTypes) => {
     classMethods: {
       associate: (models) => {
         User.hasMany(models.Group, {
-          as: 'Groups',
+          foreignKey: 'userId',
+          as: 'member',
+          // sourceKey: 'id'
         });
       },
     },
@@ -73,4 +87,4 @@ const UserModel = (sequelize, DataTypes) => {
   return User;
 };
 
-export default UserModel;
+// export default UserModel;

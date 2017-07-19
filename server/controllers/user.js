@@ -14,7 +14,7 @@ dotenv.load();
 const secret = process.env.secretKey;
 const User = db.User;
 const Group = db.Group;
-const UserGroup = db.UserGroup;
+const GroupMember = db.GroupMember;
 
 const createUser = {
   signup(req, res) {
@@ -47,15 +47,17 @@ const createUser = {
         );
         res.status(201).json({
           message: `Account Created, Welcome ${user.username}`,
+          token,
+          user
         });
       })
-      .catch(error => res.status(400).json(error));
+      .catch(error => res.status(400).json(error.message));
   },
   allUsers(req, res) {
     return User
       .findAll()
       .then(user => res.status(200).json(user))
-      .catch(error => res.status(400).json(error));
+      .catch(error => res.status(400).json(error.message));
   },
   /**
    * @param  {object} req
@@ -63,20 +65,20 @@ const createUser = {
    * @description fetch all the users from database
    * @return {array} all users in an array
    */
-  userGroups(req, res) {
+  groupMembers(req, res) {
     const list = [];
-    UserGroup
+    GroupMember
       .findAll({ where: { userId: req.params.userId } })
-      .then((usergroup) => {
-        usergroup.forEach((obj) => {
+      .then((groupmembers) => {
+        groupmembers.forEach((obj) => {
           list.push(obj.groupId);
         });
         Group
           .findAll({ where: { id: list } })
-          .then(group => res.status(200).send(group))
-          .catch(error => res.status(404).send(error));
+          .then(users => res.status(200).send(users))
+          .catch(error => res.status(404).send(error.message));
       })
-      .catch(error => res.status(404).send(error));
+      .catch(error => res.status(404).send(error.message));
   }
 };
 
