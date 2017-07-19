@@ -48,14 +48,14 @@ const createUser = {
           }, secret
         );
         const myKey = { firstName: '', lastName: '', email: '' };
-        const responses = {};
+        const account = {};
         Object.keys(myKey).forEach((key) => {
-          responses[key] = user[key];
+          account[key] = user[key];
         });
         res.status(201).json({
           message: 'Success, Token succesfully generated',
           Token: token,
-          responses
+          account
         });
       })
       .catch(error => res.status(400).json(error.message));
