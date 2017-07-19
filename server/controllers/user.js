@@ -13,8 +13,8 @@ import db from '../models/index';
 dotenv.load();
 const secret = process.env.secretKey;
 const User = db.User;
-const Group = db.Group;
-const GroupMember = db.GroupMember;
+// const Group = db.Group;
+// const GroupMember = db.GroupMember;
 
 const createUser = {
   signup(req, res) {
@@ -35,6 +35,8 @@ const createUser = {
     }
     return User
       .create({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         username: req.body.username,
         password: req.body.password,
         email: req.body.email,
@@ -45,10 +47,15 @@ const createUser = {
             userName: user.userName
           }, secret
         );
+        const myKey = { firstName: '', lastName: '', email: '' };
+        const responses = {};
+        Object.keys(myKey).forEach((key) => {
+          responses[key] = user[key];
+        });
         res.status(201).json({
-          message: `Account Created, Welcome ${user.username}`,
-          token,
-          user
+          message: 'Success, Token succesfully generated',
+          Token: token,
+          responses
         });
       })
       .catch(error => res.status(400).json(error.message));
@@ -56,8 +63,8 @@ const createUser = {
   allUsers(req, res) {
     return User
       .findAll()
-      .then(user => res.status(200).json(user))
-      .catch(error => res.status(400).json(error.message));
+      .then(user => res.send(user))
+      .catch(error => res.send(error.message));
   },
   /**
    * @param  {object} req
@@ -65,21 +72,21 @@ const createUser = {
    * @description fetch all the users from database
    * @return {array} all users in an array
    */
-  groupMembers(req, res) {
-    const list = [];
-    GroupMember
-      .findAll({ where: { userId: req.params.userId } })
-      .then((groupmembers) => {
-        groupmembers.forEach((obj) => {
-          list.push(obj.groupId);
-        });
-        Group
-          .findAll({ where: { id: list } })
-          .then(users => res.status(200).send(users))
-          .catch(error => res.status(404).send(error.message));
-      })
-      .catch(error => res.status(404).send(error.message));
-  }
+  // groupMembers(req, res) {
+  //   const list = [];
+  //   GroupMember
+  //     .findAll({ where: { userId: req.params.userId } })
+  //     .then((groupmembers) => {
+  //       groupmembers.forEach((obj) => {
+  //         list.push(obj.groupId);
+  //       });
+  //       Group
+  //         .findAll({ where: { id: list } })
+  //         .then(users => res.status(200).send(users))
+  //         .catch(error => res.status(404).send(error.message));
+  //     })
+  //     .catch(error => res.status(404).send(error.message));
+  // }
 };
 
 export default createUser;
