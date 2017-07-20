@@ -18,7 +18,7 @@ app.get('/api', (req, res, next) => {
 
 app.post('/api/user/signup', userController.signup);
 // app.post('/api/user/signin', loginController.signin);
-// app.get('/api/users', userController.allUsers);
+app.get('/api/users', userController.allUsers);
 // app.get('/api/userGroups', userController.userGroups);
 // app.post('/api/group', groupController.create);
 // app.get('/api/groups', groupController.allGroups);
