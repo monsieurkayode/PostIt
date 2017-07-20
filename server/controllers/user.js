@@ -52,18 +52,25 @@ const createUser = {
         Object.keys(myKey).forEach((key) => {
           account[key] = user[key];
         });
-        res.status(201).json({
+        res.json({
           message: 'Success, Token succesfully generated',
           Token: token,
           account
         });
       })
-      .catch(error => res.status(400).json(error.message));
+      .catch(error => res.json(error.message));
   },
   allUsers(req, res) {
     return User
       .findAll()
-      .then(user => res.send(user))
+      .then((users) => {
+        const myKey = { firstName: '', lastName: '', email: '' };
+        const allUsers = {};
+        Object.keys(myKey).forEach((key) => {
+          allUsers[key] = users[key];
+        });
+        res.send(allUsers);
+      })
       .catch(error => res.send(error.message));
   },
   /**
