@@ -3,7 +3,7 @@
  */
 import express from 'express';
 import userController from '../controllers/user';
-// import loginController from '../controllers/login';
+import loginController from '../controllers/login';
 // import groupController from '../controllers/group';
 // import messageController from '../controllers/message';
 // import groupMemberController from '../controllers/groupMember';
@@ -17,7 +17,7 @@ app.get('/api', (req, res, next) => {
 });
 
 app.post('/api/user/signup', userController.signup);
-// app.post('/api/user/signin', loginController.signin);
+app.post('/api/user/signin', loginController.signin);
 app.get('/api/users', userController.allUsers);
 // app.get('/api/userGroups', userController.userGroups);
 // app.post('/api/group', groupController.create);
