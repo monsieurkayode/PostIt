@@ -66,7 +66,12 @@ const createUser = {
       .findAll()
       .then((users) => {
         users.forEach((user) => {
-          const myKey = { firstName: '', lastName: '', username: '', email: '' };
+          const myKey = {
+            firstName: '',
+            lastName: '',
+            username: '',
+            email: ''
+          };
           const response = {};
           Object.keys(myKey).forEach((key) => {
             response[key] = user[key];
