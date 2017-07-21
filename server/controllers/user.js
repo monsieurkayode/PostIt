@@ -19,17 +19,17 @@ const User = db.User;
 const createUser = {
   signup(req, res) {
     if (!req.body.username) {
-      return res.status(400).json({
+      return res.send({
         error: 'Username not be empty'
       });
     }
     if (!req.body.email) {
-      return res.status(400).json({
+      return res.send({
         error: 'Email must not be empty'
       });
     }
     if (!req.body.password) {
-      return res.status(400).json({
+      return res.send({
         error: 'Password must not be empty'
       });
     }
@@ -47,7 +47,7 @@ const createUser = {
             userName: user.userName
           }, secret
         );
-        const myKey = { firstName: '', lastName: '', email: '' };
+        const myKey = { firstName: '', lastName: '', username: '', email: '' };
         const account = {};
         Object.keys(myKey).forEach((key) => {
           account[key] = user[key];
@@ -58,20 +58,29 @@ const createUser = {
           account
         });
       })
-      .catch(error => res.json(error.message));
+      .catch(error => res.send(error));
   },
   allUsers(req, res) {
+    const allUsers = [];
     return User
       .findAll()
       .then((users) => {
-        const myKey = { firstName: '', lastName: '', email: '' };
-        const allUsers = {};
-        Object.keys(myKey).forEach((key) => {
-          allUsers[key] = users[key];
+        users.forEach((user) => {
+          const myKey = { firstName: '', lastName: '', username: '', email: '' };
+          const response = {};
+          Object.keys(myKey).forEach((key) => {
+            response[key] = user[key];
+          });
+          allUsers.push(response);
         });
+        // const myKey = { firstName: '', lastName: '', email: '' };
+        // const allUsers = {};
+        // Object.keys(myKey).forEach((key) => {
+        //   allUsers[key] = users[key];
+        // });
         res.send(allUsers);
       })
-      .catch(error => res.send(error.message));
+      .catch(error => res.send(error));
   },
   /**
    * @param  {object} req
