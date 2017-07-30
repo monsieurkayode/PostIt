@@ -18,14 +18,12 @@ module.exports = (sequelize, DataTypes) => {
     classMethods: {
       associate: (models) => {
         Group.belongsTo(models.User, {
-          // foreignKey: 'userId',
           foreignKey: 'groupAdmin',
-          // as: 'groupAdmin'
+          onDelete: 'CASCADE',
         });
         Group.hasMany(models.GroupMember, {
           foreignKey: 'groupId',
           as: 'groupMembers'
-          // constraints: false
         });
       },
     },

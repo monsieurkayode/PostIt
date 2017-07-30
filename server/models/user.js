@@ -77,9 +77,8 @@ module.exports = (sequelize, DataTypes) => {
     classMethods: {
       associate: (models) => {
         User.hasMany(models.Group, {
-          foreignKey: 'userId',
-          as: 'member',
-          // sourceKey: 'id'
+          foreignKey: 'groupAdmin',
+          as: 'groups',
         });
       },
     },

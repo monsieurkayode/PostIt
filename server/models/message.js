@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    groupId: {
+    messageId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
