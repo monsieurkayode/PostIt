@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      groupId: {
+      messageId: {
         type: Sequelize.INTEGER,
         allowNull: true,
       },

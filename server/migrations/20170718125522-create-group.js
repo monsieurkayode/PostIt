@@ -24,15 +24,6 @@ module.exports = {
           as: 'groupAdmin'
         },
       },
-      // member: {
-      //   type: Sequelize.STRING,
-      //   allowNull: false,
-      //   references: {
-      //     model: 'Users',
-      //     key: 'id',
-      //     as: 'member'
-      //   },
-      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

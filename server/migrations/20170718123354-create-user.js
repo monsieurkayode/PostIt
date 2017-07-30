@@ -29,15 +29,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      // group: {
-      //   type: Sequelize.INTEGER,
-      //   allowNull: false,
-      //   references: {
-      //     model: 'Groups',
-      //     key: 'id',
-      //     as: 'group'
-      //   },
-      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
