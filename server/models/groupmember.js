@@ -16,6 +16,17 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     classMethods: {
+      associate: (models) => {
+        GroupMember.belongsTo(models.Group, {
+          foreignKey: 'groupId',
+          as: 'member',
+          onDelete: 'CASCADE',
+        });
+        GroupMember.belongsTo(models.User, {
+          foreignKey: 'memberId',
+          onDelete: 'CASCADE',
+        });
+      }
     },
   });
   return GroupMember;

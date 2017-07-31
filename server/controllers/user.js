@@ -13,7 +13,7 @@ import db from '../models/index';
 dotenv.load();
 const secret = process.env.secretKey;
 const User = db.User;
-// const Group = db.Group;
+const Group = db.Group;
 // const GroupMember = db.GroupMember;
 
 const createUser = {
@@ -44,7 +44,7 @@ const createUser = {
       .then((user) => {
         const token = jwt.sign(
           { userId: user.id,
-            userName: user.userName
+            username: user.username
           }, secret
         );
         const myKey = { firstName: '', lastName: '', username: '', email: '' };
@@ -55,7 +55,7 @@ const createUser = {
         res.json({
           message: 'Success, Token succesfully generated',
           Token: token,
-          account
+          user: [account]
         });
       })
       .catch(error => res.send(error));
@@ -63,7 +63,11 @@ const createUser = {
   allUsers(req, res) {
     const allUsers = [];
     return User
-      .findAll()
+      .findAll({
+        include: [{
+          all: true
+        }]
+      })
       .then((users) => {
         users.forEach((user) => {
           const myKey = {
@@ -83,7 +87,7 @@ const createUser = {
         // Object.keys(myKey).forEach((key) => {
         //   allUsers[key] = users[key];
         // });
-        res.send(allUsers);
+        res.send(users);
       })
       .catch(error => res.send(error));
   },

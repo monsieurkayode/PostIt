@@ -4,22 +4,27 @@
 import db from '../models/index';
 
 const Message = db.Message;
+const GroupMember = db.GroupMember;
 
 const createMessage = {
   create(req, res) {
     return Message
       .create({
         message: req.body.message,
-        groupId: req.params.groupId,
-        sender: req.body.sender,
+        messageId: req.params.messageId,
+        sender: req.params.sender,
       })
-      .then(message => res.status(201).json(message))
-      .catch(error => res.status(400).json(error));
+      .then(message => res.status(201).send(message))
+      .catch(error => res.status(400).send(error));
   },
 
   findGroupMessages(req, res) {
     return Message
-      .findAll({ where: { groupId: req.params.groupId } })
+      .findById(req.params.messageId, {
+        include: [{
+          all: true
+        }]
+      })
       .then(messages => res.status(200).json(messages))
       .catch(error => res.status(400).json(error));
   },

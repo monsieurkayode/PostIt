@@ -35,10 +35,10 @@ const login = {
           res.send({
             message: 'Success, Token successfully generated',
             Token: token
-          })
-            .catch(error => res.status(404).send(error));
+          });
         }
-      });
+      })
+      .catch(error => res.status(404).send(error));
   }
 };
 
