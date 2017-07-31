@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       associate: (models) => {
         Group.belongsTo(models.User, {
           foreignKey: 'groupAdmin',
+          as: 'admin',
           onDelete: 'CASCADE',
         });
         Group.hasMany(models.GroupMember, {

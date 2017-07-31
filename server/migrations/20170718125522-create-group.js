@@ -16,11 +16,11 @@ module.exports = {
         allowNull: false,
       },
       groupAdmin: {
-        type: Sequelize.STRING,
-        allowNull: false,
+        type: Sequelize.INTEGER,
+        allowNull: true,
         references: {
           model: 'Users',
-          key: 'username',
+          key: 'id',
           as: 'groupAdmin'
         },
       },

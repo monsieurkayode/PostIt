@@ -5,6 +5,8 @@ import db from '../models/index';
 
 // Declare a variable for group table in database
 const Group = db.Group;
+const User = db.User;
+const GroupMember = db.GroupMember;
 
 // Functions below here for group model
 const createGroup = {
@@ -13,61 +15,68 @@ const createGroup = {
       .create({
         groupName: req.body.groupName,
         description: req.body.description,
+        groupAdmin: req.params.groupAdmin,
       })
-      .then(group => res.status(200)
-        .send({ message: `Successfully created ${group.groupName}`, group }))
+      .then((group) => {
+        // group.setUser(req.params.groupAdmin);
+        res.status(200).send({ message: 'Succesfully created group' });
+      })
       .catch(error => res.status(400).json(error));
   },
 
   // Function to return all groups in database
   allGroups(req, res) {
     return Group
-      .all()
+      .all({
+        include: [{
+          all: true
+        }]
+      })
       .then(group => res.status(200).json(group))
       .catch(error => res.status(400).json(error));
   },
 
   // Function to add a registered user to group
-  addUser(req, res) {
-    return Group
-      .findById(req.params.groupId)
-      .then((group) => {
-        group.addUser(req.body.userId)
-          .then(() => {
-            res.status(201).json({
-              message: `Succesfully added ${req.body.userId}`
-            });
-          })
-          .catch(error => res.status(400).json(error));
-      });
-  },
+  // addUser(req, res) {
+  //   return Group
+  //     .findById(req.params.groupId)
+  //     .then((group) => {
+  //       group.addUser(req.body.userId)
+  //         .then(() => {
+  //           res.status(201).json({
+  //             message: `Succesfully added ${req.body.userId}`
+  //           });
+  //         })
+  //         .catch(error => res.status(400).json(error));
+  //     });
+  // },
 
   // Function to remove user from group
-  removeUser(req, res) {
-    return Group
-      .findById(req.params.groupId)
-      .then((group) => {
-        group.removeUser(req.body.userId)
-          .then(() => {
-            res.status(200)
-              .json({ message: `Succesfully removed ${group.userId}` });
-          })
-          .catch(error => res.status(400).json(error));
-      });
-  },
+  // removeUser(req, res) {
+  //   return Group
+  //     .findById(req.params.groupId)
+  //     .then((group) => {
+  //       group.removeUser(req.body.userId)
+  //         .then(() => {
+  //           res.status(200)
+  //             .json({ message: `Succesfully removed ${group.userId}` });
+  //         })
+  //         .catch(error => res.status(400).json(error));
+  //     });
+  // },
 
   // Function to find memebrs of a group
-  findGroupMembers(req, res) {
-    return Group
-      .findById(req.params.groupId)
-      .then((group) => {
-        group.getUser(req.body.userId)
-          .then(() => {
-            res.status(200).json(group);
-          })
-          .catch(error => res.status(400).json(error));
-      });
-  },
+  // findGroupMembers(req, res) {
+  //   return Group
+  //     .findById(req.params.groupId)
+  //     .then((group) => {
+  //       group.getUser(req.body.userId)
+  //         .then(() => {
+  //           res.status(200).json(group);
+  //         })
+  //         .catch(error => res.status(400).json(error));
+  //     });
+  // },
 };
 
 export default createGroup;

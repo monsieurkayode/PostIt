@@ -7,14 +7,14 @@ import db from '../models/index';
 const GroupMember = db.GroupMember;
 
 const addToGroup = {
-  addGroupUser(req, res) {
+  addGroupMember(req, res) {
     return GroupMember
       .create({
-        userId: req.body.userId,
+        memberId: req.params.memberId,
         groupId: req.params.groupId,
       })
-      .then(groupmember => res.status(201)
-        .json({ message: `Succesfully added ${req.body.userId}`, groupmember }))
+      .then((groupmember) => res.status(201)
+        .send({ message: 'Succesfully added member' }))
       .catch(error => res.status(400).json(error));
   },
 };

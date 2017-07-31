@@ -10,11 +10,21 @@ module.exports = {
       },
       memberId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'Users',
+          key: 'id',
+          as: 'memberId',
+        }
       },
       groupId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'Groups',
+          key: 'id',
+          as: 'groupId',
+        }
       },
       createdAt: {
         allowNull: false,

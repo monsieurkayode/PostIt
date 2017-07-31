@@ -15,11 +15,22 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     sender: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
   }, {
     classMethods: {
+      associate: (models) => {
+        Message.belongsTo(models.Group, {
+          foreignKey: 'messageId',
+          as: 'group',
+          onDelete: 'CASCADE',
+        });
+        Message.belongsTo(models.User, {
+          foreignKey: 'sender',
+          as: 'author'
+        });
+      }
     },
   });
   return Message;

@@ -14,11 +14,21 @@ module.exports = {
       },
       messageId: {
         type: Sequelize.INTEGER,
-        allowNull: true,
+        allowNull: false,
+        references: {
+          model: 'Groups',
+          key: 'id',
+          as: 'messageId',
+        }
       },
       sender: {
-        type: Sequelize.STRING,
-        allowNull: true
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Users',
+          key: 'id',
+          as: 'sender',
+        }
       },
       createdAt: {
         allowNull: false,
