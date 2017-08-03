@@ -1,25 +1,41 @@
 /**
  * Import Module dependencies
  */
-import express from 'express';
-import session from 'express-session';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 
-const app = express.Router();
+dotenv.load();
+const secret = process.env.secretKey;
 
-app.use(session({
-  secret: 'zxerth5603/@',
-  resave: false,
-  saveUninitialized: false,
-}));
+/**
+ * @param  {object} req
+ * @param  {object} res
+ * @param  {} next
+ * @description auntheticate user by checking if a user has a token or a valid token
+ * @return {object} success or failure message. success if user has a valid token,
+ * failure if user do not have a token or a valid token.
+ */
 
-const authentication = ((req, res, next) => {
-  const err = req.session.error;
-  const msg = req.session.success;
-  delete req.session.error;
-  delete req.session.success;
-  if (err) res.status(401).send('Access Denied');
-  if (msg) res.status(200).send('Authentication Success');
-  next();
-});
-
+const authentication = (req, res, next) => {
+  const token = req.body.token || req.query.token || req.headers['x-access-token'];
+  // decode token
+  if (token) {
+    // verifies secret and checks exp
+    jwt.verify(token, secret, (err, decoded) => {
+      if (err) {
+        return res.status(403).json({ success: false, message: 'Failed to authenticate token.' });
+      }
+      // if everything is good, save to request for use in other routes
+      req.decoded = decoded;
+      next();
+    });
+  } else {
+    // if there is no token
+    // return an error
+    return res.status(403).send({
+      success: false,
+      message: 'No token provided.'
+    });
+  }
+};
 export default authentication;

@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'Username too long',
         },
         is: {
-          args: /^[A-Za-z0-9]+$/i,
+          args: /^[A-Za-z0-9]+$/gi,
           msg: 'Username must contain letter and numbers only',
         }
       },
