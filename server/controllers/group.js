@@ -55,7 +55,7 @@ const createGroup = {
   },
 
   // Function to add a registered user to group
-  addAdmin(req, res) {
+  changeAdmin(req, res) {
     return Group
       .findById(req.params.groupId)
       .then((group) => {
@@ -65,7 +65,7 @@ const createGroup = {
             message: 'Group not found'
           });
         }
-        User.findById(req.body.groupAdmin)
+        User.findById(req.body.newAdmin)
           .then((user) => {
             if (!user) {
               return res.status(404).send({
@@ -73,7 +73,7 @@ const createGroup = {
                 message: 'User not found'
               });
             }
-            GroupMember.findById(req.body.groupAdmin)
+            GroupMember.findOne({ where: { memberId: req.body.newAdmin } })
               .then((member) => {
                 if (!member) {
                   return res.status(404).send({
@@ -81,47 +81,20 @@ const createGroup = {
                     message: 'User not a group member'
                   });
                 }
-              });
-            return group
-              .setAdmin(req.body.groupAdmin)
-              // .update(req.body, { fields: Object.keys(req.body) })
-              .then(() => {
-                res.status(201).json({
-                  success: true,
-                  message: 'Succesfully updated admin'
-                });
+                group
+                  .setAdmin(req.body.newAdmin)
+                // .update(req.body, { fields: Object.keys(req.body) })
+                  .then(() => {
+                    res.status(201).json({
+                      success: true,
+                      message: 'Succesfully updated admin'
+                    });
+                  });
               })
               .catch(error => res.status(400).json(error));
           });
       });
   },
-
-  // Function to remove user from group
-  // removeUser(req, res) {
-  //   return Group
-  //     .findById(req.params.groupId)
-  //     .then((group) => {
-  //       group.removeUser(req.body.userId)
-  //         .then(() => {
-  //           res.status(200)
-  //             .json({ message: `Succesfully removed ${group.userId}` });
-  //         })
-  //         .catch(error => res.status(400).json(error));
-  //     });
-  // },
-
-  // Function to find memebrs of a group
-  // findGroupMembers(req, res) {
-  //   return Group
-  //     .findById(req.params.groupId)
-  //     .then((group) => {
-  //       group.getUser(req.body.userId)
-  //         .then(() => {
-  //           res.status(200).json(group);
-  //         })
-  //         .catch(error => res.status(400).json(error));
-  //     });
-  // },
 };
 
 export default createGroup;

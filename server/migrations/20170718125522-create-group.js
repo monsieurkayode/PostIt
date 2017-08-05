@@ -9,7 +9,8 @@ module.exports = {
       },
       groupName: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true,
       },
       description: {
         type: Sequelize.STRING,
@@ -17,7 +18,7 @@ module.exports = {
       },
       groupAdmin: {
         type: Sequelize.INTEGER,
-        allowNull: true,
+        allowNull: false,
         references: {
           model: 'Users',
           key: 'id',
