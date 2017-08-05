@@ -14,7 +14,6 @@ dotenv.load();
 const secret = process.env.secretKey;
 const User = db.User;
 const Group = db.Group;
-// const GroupMember = db.GroupMember;
 
 const createUser = {
   signup(req, res) {
@@ -55,6 +54,24 @@ const createUser = {
       })
       .catch(error => res.send(error));
   },
+  deactivateAccount(req, res) {
+    return User
+      .destroy({ where: { id: req.decoded.userId } })
+      .then((user) => {
+        if (!user) {
+          res.status(404).send({
+            success: false,
+            message: 'User not found'
+          });
+        } else {
+          res.status(200).send({
+            success: true,
+            message: 'User account deactivated'
+          });
+        }
+      })
+      .catch(error => res.send(error));
+  }
 };
 
 export default createUser;

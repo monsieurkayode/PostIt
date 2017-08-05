@@ -2,32 +2,49 @@ const db = require('../models/index');
 const isAlphabet = require('../helpers/isAlphabet');
 const isAlphaNumeric = require('../helpers/isAlphaNumeric');
 const isEmail = require('../helpers/isEmail');
-const isEmpty = require('../helpers/isEmpty');
-// const isNumber = require('../helpers/isNumber');
-// const isSymbol = require('../helpers/isSymbol');
+const cleanString = require('../helpers/cleanString');
 
 const User = db.User;
 
-// const empty = /[ ]/gi;
-// const alpha = /^[A-Za-z]*$/gi;
-// const digit = /^[0-9]*$/gi;
-// const alNum = /^[A-Za-z0-9]*$/gi;
 
 const userValidation = {
   basicValidation(req, res, next) {
-    if (!req.body.firstName || !isAlphabet(req.body.firstName)) {
+    req.body.firstName = cleanString(req.body.firstName);
+    req.body.lastName = cleanString(req.body.lastName);
+    req.body.username = cleanString(req.body.username);
+    req.body.password = cleanString(req.body.password);
+    req.body.email = cleanString(req.body.email);
+    if (!req.body.firstName) {
+      return res.status(400).send({
+        success: false,
+        message: 'Please enter your first name'
+      });
+    }
+    if (!isAlphabet(req.body.firstName)) {
       return res.status(400).send({
         success: false,
         message: 'First name must contain alphabets only'
       });
     }
-    if (!req.body.lastName || !isAlphabet(req.body.lastName)) {
+    if (!req.body.lastName) {
+      return res.status(400).send({
+        success: false,
+        message: 'Please enter your last name'
+      });
+    }
+    if (!isAlphabet(req.body.lastName)) {
       return res.status(400).send({
         success: false,
         message: 'Last name must contain alphabets only'
       });
     }
-    if (!req.body.username || !isAlphaNumeric(req.body.username)) {
+    if (!req.body.username) {
+      return res.status(400).send({
+        success: false,
+        message: 'Please enter a username'
+      });
+    }
+    if (!isAlphaNumeric(req.body.username)) {
       return res.status(400).send({
         success: false,
         message: 'Username must contain alphabets and numbers only'
@@ -45,10 +62,10 @@ const userValidation = {
         message: 'Invalid Email, please enter a valid email'
       });
     }
-    if (!req.body.password || isEmpty(req.body.password)) {
+    if (!req.body.password) {
       return res.status(400).send({
         success: false,
-        message: 'Password cannot contain empty spaces'
+        message: 'Plese enter a password'
       });
     }
     if (req.body.password.length < 6) {

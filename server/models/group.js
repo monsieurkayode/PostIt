@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
     groupName: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: {
+        args: true,
+        msg: 'Group name already exists'
+      }
     },
     description: {
       type: DataTypes.STRING,
