@@ -9,10 +9,6 @@ module.exports = (sequelize, DataTypes) => {
     memberId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique: {
-        args: true,
-        msg: 'User already a group member'
-      },
     },
     groupId: {
       type: DataTypes.INTEGER,

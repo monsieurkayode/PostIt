@@ -5,11 +5,11 @@
   "main": "app.js",
   "scripts": {
     "sequelize init": "./node_modules/.bin/sequelize init",
-    "start": "nodemon --exec babel-node ./bin/www",
+    "start": "nodemon --watch server --exec babel-node ./bin/www",
     "start:dev": "nodemon ./bin/www",
     "migrate": "./node_modules/.bin/sequelize db:migrate",
     "unmigrate": "./node_modules/.bin/sequelize db:migrate:undo:all",
-    "test": "NODE_ENV=test && mocha --timeout 40000 --compilers js:babel-core/register server/test/test.js"
+    "test": "SET NODE_ENV=test&& mocha --timeout 10000 --compilers js:babel-core/register server/test"
   },
   "repository": {
     "type": "git",
@@ -52,6 +52,7 @@
     "pg-hstore": "^2.3.2",
     "sequelize": "^3.30.4",
     "sequelize-cli": "^2.7.0",
+    "should": "^11.2.1",
     "supertest": "^3.0.0"
   },
   "devDependencies": {

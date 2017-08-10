@@ -6,4 +6,4 @@ const isAlphaNumeneric = (str) => {
   return false;
 };
 
-module.exports = isAlphaNumeneric;
+export default isAlphaNumeneric;

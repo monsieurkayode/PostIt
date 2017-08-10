@@ -13,25 +13,34 @@ import groupValidation from '../middlewares/groupValidation';
 import groupMemberValidation from '../middlewares/groupMemberValidation';
 
 const app = express.Router();
-app.get('/api', (req, res, next) => {
+
+app.get('/api', (req, res) => {
   res.send({
     message: 'Status connected ok',
   });
-  next();
 });
 
-app.post('/api/user/signup', userValidation.basicValidation, userValidation.emailValidation, userController.signup);
+app.post('/api/user/signup', userValidation.basicValidation, userValidation.validateUsername, userValidation.emailValidation, userController.signup);
 app.post('/api/user/signin', loginController.signin);
-app.get('/api/users', authentication, userController.allUsers);
-app.delete('/api/user', authentication, userController.deactivateAccount);
-app.post('/api/group', authentication, groupValidation.basicValidation, groupController.create);
-app.get('/api/groups', authentication, groupController.allGroups);
-app.post('/api/group/:groupId/message', authentication, groupValidation.groupExists, groupMemberValidation.isGroupMember, messageController.create);
-app.get('/api/group/:groupId/messages', authentication, groupValidation.groupExists, groupMemberValidation.isGroupMember, messageController.findGroupMessages);
-app.get('/api/group/messages', authentication, messageController.allMessages);
-app.put('/api/group/:groupId/user', authentication, groupValidation.isGroupAdmin, groupController.changeAdmin);
-// app.get('/api/group/:groupId/user', groupController.findGroupMembers);
-app.post('/api/group/:groupId/user', authentication, groupValidation.groupExists, groupMemberValidation.isGroupMember, groupMemberValidation.basicValidation, groupMemberController.addGroupMember);
-app.get('/api/group/:groupId/members', authentication, groupValidation.groupExists, groupMemberValidation.isGroupMember, groupMemberController.groupMembers);
+app.get('/api/users', authentication, userValidation.validUser, userController.allUsers);
+app.delete('/api/user', authentication, userValidation.validUser, userController.deactivateAccount);
+app.put('/api/user', authentication, userValidation.validUser, userController.update);
+
+app.post('/api/group', authentication, userValidation.validUser, groupValidation.basicValidation, groupValidation.validateName, groupController.create);
+app.get('/api/groups', authentication, userValidation.validUser, groupController.allGroups);
+app.put('/api/group/:groupId/user', authentication, userValidation.validUser, groupValidation.groupExists, groupValidation.isGroupAdmin, groupController.changeAdmin);
+app.delete('/api/group/:groupId', authentication, userValidation.validUser, groupValidation.groupExists, groupValidation.isGroupAdmin, groupController.delete);
+app.put('/api/group/:groupId', authentication, userValidation.validUser, groupValidation.groupExists, groupValidation.isGroupAdmin, groupController.update);
+
+
+app.post('/api/group/:groupId/user', authentication, groupMemberValidation.basicValidation, userValidation.validUser, userValidation.userExists, groupValidation.groupExists, groupMemberValidation.isGroupMember, groupMemberController.addGroupMember);
+app.get('/api/group/:groupId/members', authentication, userValidation.validUser, groupValidation.groupExists, groupMemberValidation.validGroupMember, groupMemberController.groupMembers);
+
+app.post('/api/group/:groupId/message', authentication, userValidation.validUser, groupValidation.groupExists, groupMemberValidation.validGroupMember, messageController.create);
+app.get('/api/group/:groupId/messages', authentication, userValidation.validUser, groupValidation.groupExists, groupMemberValidation.validGroupMember, messageController.findGroupMessages);
+app.get('/api/group/:groupId/messages/user', authentication, userValidation.validUser, groupValidation.groupExists, groupMemberValidation.validGroupMember, messageController.findGroupMemberMessages);
+app.delete('/api/group/:groupId/messages/user', authentication, userValidation.validUser, groupValidation.groupExists, groupMemberValidation.validGroupMember, messageController.delete);
+app.put('/api/group/:groupId/messages/user', authentication, userValidation.validUser, groupValidation.groupExists, groupMemberValidation.validGroupMember, messageController.update);
+app.get('/api/group/messages', authentication, userValidation.validUser, messageController.allMessages);
 
 export default app;

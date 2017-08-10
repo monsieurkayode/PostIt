@@ -23,6 +23,9 @@ const authentication = (req, res, next) => {
     // verifies secret and checks exp
     jwt.verify(token, secret, (err, decoded) => {
       if (err) {
+        if (err.name === 'TokenExpiredError') {
+          return res.status(403).json({ success: false, message: 'Your session has expired, sign in again' });
+        }
         return res.status(403).json({ success: false, message: 'Failed to authenticate token.' });
       }
       // if everything is good, save to request for use in other routes

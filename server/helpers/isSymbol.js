@@ -6,4 +6,4 @@ const isSymbol = (str) => {
   return false;
 };
 
-module.exports = isSymbol;
+export default isSymbol;

@@ -1,15 +1,14 @@
-const bcrypt = require('bcrypt');
+import bcrypt from 'bcrypt';
 
-function hashPassword(password) {
+const hashPassword = (password) => {
   const saltRounds = 10;
   const salt = bcrypt.genSaltSync(saltRounds);
   const hash = bcrypt.hashSync(password, salt);
   return hash;
-}
+};
 
-const users = [
+const dbUsers = [
   {
-    id: 1,
     firstName: 'Patrick',
     lastName: 'Stewart',
     username: 'patsiizy',
@@ -18,7 +17,6 @@ const users = [
   },
 
   {
-    id: 2,
     firstName: 'Spongebob',
     lastName: 'Squarepants',
     username: 'sponge',
@@ -27,7 +25,6 @@ const users = [
   },
 
   {
-    id: 3,
     firstName: 'Super',
     lastName: 'Mario',
     username: 'mariobros',
@@ -36,7 +33,6 @@ const users = [
   },
 
   {
-    id: 4,
     firstName: 'Jack',
     lastName: 'Frost',
     username: 'iceprince',
@@ -45,7 +41,6 @@ const users = [
   },
 
   {
-    id: 5,
     firstName: 'King',
     lastName: 'Kong',
     username: 'donkeykong',
@@ -54,7 +49,6 @@ const users = [
   },
 
   {
-    id: 6,
     firstName: 'Optimus',
     lastName: 'Prime',
     username: 'optimusalpha',
@@ -63,4 +57,99 @@ const users = [
   },
 ];
 
-export default users;
+const testValidUsers = [
+  {
+    firstName: 'Patrick',
+    lastName: 'Stewart',
+    username: 'patsiizy',
+    password: 'passover',
+    email: 'patzii@gmail.com',
+  },
+
+  {
+    firstName: 'Spongebob',
+    lastName: 'Squarepants',
+    username: 'sponge',
+    password: 'squarepants',
+    email: 'spongebob@gmail.com',
+  },
+
+  {
+    firstName: 'Super',
+    lastName: 'Mario',
+    username: 'mariobros',
+    password: 'princess',
+    email: 'mario@gmail.com',
+  },
+
+  {
+    firstName: 'Jack',
+    lastName: 'Frost',
+    username: 'iceprince',
+    password: 'frozen',
+    email: 'jackfrost@gmail.com',
+  },
+
+  {
+    firstName: 'King',
+    lastName: 'Kong',
+    username: 'donkeykong',
+    password: 'banana',
+    email: 'donkeybanaba@gmail.com',
+  },
+
+  {
+    firstName: 'Optimus',
+    lastName: 'Prime',
+    username: 'optimusalpha',
+    password: 'passover',
+    email: 'primealpha@gmail.com',
+  },
+];
+
+const validUsersLogin = [
+  {
+    username: 'patsiizy',
+    password: 'passover',
+  },
+
+  {
+    username: 'sponge',
+    password: 'squarepants',
+  },
+
+  {
+    username: 'mariobros',
+    password: 'princess',
+  },
+
+  {
+    username: 'iceprince',
+    password: 'frozen',
+  },
+
+  {
+    username: 'donkeykong',
+    password: 'banana',
+  },
+
+  {
+    username: 'optimusalpha',
+    password: 'passover',
+  },
+];
+
+const invalidUsers = [
+  {
+    username: 'rapait',
+    password: 'gutikms',
+  },
+
+  {
+    username: 'sumbaz',
+    password: 'rakers',
+  },
+];
+
+export default { dbUsers, validUsersLogin, invalidUsers, testValidUsers };
+

@@ -21,8 +21,9 @@ const createMessage = {
 
   findGroupMessages(req, res) {
     return Message
-      .find({ where: { messageId: req.params.groupId },
+      .findAll({ where: { messageId: req.params.groupId },
         attributes: ['message'],
+        order: [['id', 'ASC']],
         include: [
           {
             model: Group,
@@ -36,15 +37,84 @@ const createMessage = {
           }
         ]
       })
-      .then(messages => res.status(200).json(messages))
+      .then(messages => res.status(302).send(messages))
+      .catch(error => res.status(400).json(error));
+  },
+  findGroupMemberMessages(req, res) {
+    return Message
+      .findAll({ where: { messageId: req.params.groupId, sender: req.decoded.user.id },
+        attributes: ['message'],
+        order: [['id', 'ASC']],
+        include: [
+          {
+            model: Group,
+            as: 'group',
+            attributes: ['id', 'groupName']
+          },
+          {
+            model: User,
+            as: 'author',
+            attributes: ['id', 'username']
+          }
+        ]
+      })
+      .then(messages => res.status(302).send(messages))
       .catch(error => res.status(400).json(error));
   },
   allMessages(req, res) {
     return Message
-      .findAll()
-      .then(messages => res.status(200).json(messages))
+      .findAll({
+        order: [['messageId', 'ASC']],
+        attributes: ['id', 'sender', 'messageId', 'message']
+      })
+      .then(messages => res.status(302).json(messages))
       .catch(error => res.status(400).json(error));
   },
+  delete(req, res) {
+    return Message
+      .findAll({ where: { messageId: req.params.groupId, sender: req.decoded.user.id }, order: [['id', 'ASC']] })
+      .then((messages) => {
+        if (!messages.length) {
+          return res.status(404).send({
+            success: false,
+            message: 'Message not found or already deleted'
+          });
+        }
+        return messages[messages.length - 1]
+          .destroy()
+          .then(() => {
+            res.status(200).send({
+              success: true,
+              message: 'Message successfully deleted'
+            });
+          });
+      })
+      .catch(error => res.send(error));
+  },
+  update(req, res) {
+    return Message
+      .findAll({
+        where: { messageId: req.params.groupId, sender: req.decoded.user.id },
+        order: [['id', 'ASC']]
+      })
+      .then((messages) => {
+        if (!messages.length) {
+          return res.status(404).send({
+            success: false,
+            message: 'Message not found or already deleted'
+          });
+        }
+        return messages[messages.length - 1]
+          .update(req.body.message)
+          .then(() => {
+            res.status(201).send({
+              success: true,
+              message: 'Message successfully edited'
+            });
+          });
+      })
+      .catch(error => res.send(error));
+  }
 };
 
 export default createMessage;

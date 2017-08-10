@@ -15,6 +15,7 @@ module.exports = {
       messageId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        onDelete: 'CASCADE',
         references: {
           model: 'Groups',
           key: 'id',
@@ -23,7 +24,8 @@ module.exports = {
       },
       sender: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
+        onDelete: 'SET NULL',
         references: {
           model: 'Users',
           key: 'id',

@@ -6,4 +6,4 @@ const isEmpty = (str) => {
   return false;
 };
 
-module.exports = isEmpty;
+export default isEmpty;
