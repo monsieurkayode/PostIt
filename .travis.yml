@@ -1,13 +1,12 @@
 language: node_js
 node_js:
   - "6.10.0"
-branches:
-  only:
-    - testmodel
-cache: dependencies
 script: 
   - npm install
   - npm run tests
+cache:
+  directories:
+    - node_modules
 before_script:
   - psql -c 'create database travis;' -U postgres
   - psql -c "create user kayode with password 'sadeeq';" -U postgres
