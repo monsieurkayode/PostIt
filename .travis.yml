@@ -16,5 +16,5 @@ before_script:
 after success:
   - psql -c 'drop table User;' -U postgres
 services:
-  - postgres sql
+  - postgresql
 os: windows
