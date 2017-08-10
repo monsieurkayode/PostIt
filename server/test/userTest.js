@@ -129,89 +129,89 @@ describe('Response Object', () => {
 //   });
 // });
 
-describe('User Login', () => {
-  it('allows a registered user to signin', (done) => {
-    server
-      .post('/api/user/signin')
-      .set('Connection', 'keep alive')
-      .set('Content-Type', 'application/json')
-      .type('form')
-      .send(validUsersLogin[0])
-      .end((err, res) => {
-        expect(res.statusCode).to.equal(200);
-        expect(res.body.success).to.equal(true);
-        expect(res.body.message).to.equal('Token successfully generated');
-        done();
-      });
-  });
-  it('allows a registered user to signin', (done) => {
-    server
-      .post('/api/user/signin')
-      .set('Connection', 'keep alive')
-      .set('Content-Type', 'application/json')
-      .type('form')
-      .send(validUsersLogin[1])
-      .end((err, res) => {
-        expect(res.statusCode).to.equal(200);
-        expect(res.body.success).to.equal(true);
-        expect(res.body.message).to.equal('Token successfully generated');
-        done();
-      });
-  });
-  it('allows a registered user to signin', (done) => {
-    server
-      .post('/api/user/signin')
-      .set('Connection', 'keep alive')
-      .set('Content-Type', 'application/json')
-      .type('form')
-      .send(validUsersLogin[2])
-      .end((err, res) => {
-        expect(res.statusCode).to.equal(200);
-        expect(res.body.success).to.equal(true);
-        expect(res.body.message).to.equal('Token successfully generated');
-        done();
-      });
-  });
-  it('allows a registered user to signin', (done) => {
-    server
-      .post('/api/user/signin')
-      .set('Connection', 'keep alive')
-      .set('Content-Type', 'application/json')
-      .type('form')
-      .send(validUsersLogin[3])
-      .end((err, res) => {
-        expect(res.statusCode).to.equal(200);
-        expect(res.body.success).to.equal(true);
-        expect(res.body.message).to.equal('Token successfully generated');
-        done();
-      });
-  });
-  it('allows a registered user to signin', (done) => {
-    server
-      .post('/api/user/signin')
-      .set('Connection', 'keep alive')
-      .set('Content-Type', 'application/json')
-      .type('form')
-      .send(validUsersLogin[4])
-      .end((err, res) => {
-        expect(res.statusCode).to.equal(200);
-        expect(res.body.success).to.equal(true);
-        expect(res.body.message).to.equal('Token successfully generated');
-        done();
-      });
-  });
-  it('allows a registered user to signin', (done) => {
-    server
-      .post('/api/user/signin')
-      .set('Connection', 'keep alive')
-      .set('Content-Type', 'application/json')
-      .type('form')
-      .send(validUsersLogin[5])
-      .end((err, res) => {
-        expect(res.statusCode).to.equal(200);
-        expect(res.body.success).to.equal(true);
-        expect(res.body.message).to.equal('Token successfully generated');
-        done();
-      });
-  });
-});
+// describe('User Login', () => {
+//   it('allows a registered user to signin', (done) => {
+//     server
+//       .post('/api/user/signin')
+//       .set('Connection', 'keep alive')
+//       .set('Content-Type', 'application/json')
+//       .type('form')
+//       .send(validUsersLogin[0])
+//       .end((err, res) => {
+//         expect(res.statusCode).to.equal(200);
+//         expect(res.body.success).to.equal(true);
+//         expect(res.body.message).to.equal('Token successfully generated');
+//         done();
+//       });
+//   });
+//   it('allows a registered user to signin', (done) => {
+//     server
+//       .post('/api/user/signin')
+//       .set('Connection', 'keep alive')
+//       .set('Content-Type', 'application/json')
+//       .type('form')
+//       .send(validUsersLogin[1])
+//       .end((err, res) => {
+//         expect(res.statusCode).to.equal(200);
+//         expect(res.body.success).to.equal(true);
+//         expect(res.body.message).to.equal('Token successfully generated');
+//         done();
+//       });
+//   });
+//   it('allows a registered user to signin', (done) => {
+//     server
+//       .post('/api/user/signin')
+//       .set('Connection', 'keep alive')
+//       .set('Content-Type', 'application/json')
+//       .type('form')
+//       .send(validUsersLogin[2])
+//       .end((err, res) => {
+//         expect(res.statusCode).to.equal(200);
+//         expect(res.body.success).to.equal(true);
+//         expect(res.body.message).to.equal('Token successfully generated');
+//         done();
+//       });
+//   });
+//   it('allows a registered user to signin', (done) => {
+//     server
+//       .post('/api/user/signin')
+//       .set('Connection', 'keep alive')
+//       .set('Content-Type', 'application/json')
+//       .type('form')
+//       .send(validUsersLogin[3])
+//       .end((err, res) => {
+//         expect(res.statusCode).to.equal(200);
+//         expect(res.body.success).to.equal(true);
+//         expect(res.body.message).to.equal('Token successfully generated');
+//         done();
+//       });
+//   });
+//   it('allows a registered user to signin', (done) => {
+//     server
+//       .post('/api/user/signin')
+//       .set('Connection', 'keep alive')
+//       .set('Content-Type', 'application/json')
+//       .type('form')
+//       .send(validUsersLogin[4])
+//       .end((err, res) => {
+//         expect(res.statusCode).to.equal(200);
+//         expect(res.body.success).to.equal(true);
+//         expect(res.body.message).to.equal('Token successfully generated');
+//         done();
+//       });
+//   });
+//   it('allows a registered user to signin', (done) => {
+//     server
+//       .post('/api/user/signin')
+//       .set('Connection', 'keep alive')
+//       .set('Content-Type', 'application/json')
+//       .type('form')
+//       .send(validUsersLogin[5])
+//       .end((err, res) => {
+//         expect(res.statusCode).to.equal(200);
+//         expect(res.body.success).to.equal(true);
+//         expect(res.body.message).to.equal('Token successfully generated');
+//         done();
+//       });
+//   });
+// });
