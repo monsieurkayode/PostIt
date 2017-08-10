@@ -4,24 +4,17 @@ import should from 'should';
 import assert from 'assert';
 import supertest from 'supertest';
 import app from '../../app';
-import models from '../models';
+import clearDb from '../helpers/clearDb';
 import users from '../seeders/userSeeder';
 
 const testValidUsers = users.testValidUsers;
 const validUsersLogin = users.validUsersLogin;
-const invalidUsers = users.invalidUsers;
-
+//const invalidUsers = users.invalidUsers;
 
 const server = supertest.agent(app);
 const expect = require('chai').expect;
 
-before((done) => {
-  models.sequelize.sync({ force: true }).then(() => {
-    done(null);
-  }).catch((error) => {
-    done(error);
-  });
-});
+clearDb();
 
 describe('Test Server Connection', () => {
   it('should respond with Status connected ok', (done) => {
