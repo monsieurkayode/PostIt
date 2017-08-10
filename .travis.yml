@@ -11,8 +11,8 @@ cache:
   directories:
     - node_modules
 before_script:
+  - cp config/.postgresql.yml.travis config/.postgresql.yml
   - psql -c 'create database travis;' -U postgres
-  - psql -c "create user kayode with password 'sadeeq';" -U postgres
 after success:
   - psql -c 'drop database travis;' -U postgres
 services:
