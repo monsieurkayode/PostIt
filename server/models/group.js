@@ -24,11 +24,12 @@ module.exports = (sequelize, DataTypes) => {
         Group.belongsTo(models.User, {
           foreignKey: 'groupAdmin',
           as: 'admin',
-          onDelete: 'CASCADE',
+          onDelete: 'SET NULL'
         });
         Group.hasMany(models.GroupMember, {
           foreignKey: 'groupId',
-          as: 'groupMembers'
+          as: 'groupMembers',
+          onDelete: 'CASCADE'
         });
       },
     },

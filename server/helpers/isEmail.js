@@ -6,4 +6,4 @@ const isEmail = (str) => {
   return false;
 };
 
-module.exports = isEmail;
+export default isEmail;

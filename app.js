@@ -13,14 +13,11 @@ import groupMembers from './server/seeders/groupMemberSeeder';
 import messages from './server/seeders/messageSeeder';
 // import sequelize from './server/models';
 
-// sequelize.sync({
-//   force: true
-// });
 // db.User.sync({
 //   force: true
 // }).then((User) => {
 //   User
-//     .bulkCreate(users);
+//     .bulkCreate(users.dbUsers);
 // }).then(() => {
 //   db.Group.sync({
 //     force: true

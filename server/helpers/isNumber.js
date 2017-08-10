@@ -6,4 +6,4 @@ const isNumber = (str) => {
   return false;
 };
 
-module.exports = isNumber;
+export default isNumber;

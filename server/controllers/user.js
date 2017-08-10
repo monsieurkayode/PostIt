@@ -3,6 +3,7 @@
  */
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 import db from '../models/index';
 
 /**
@@ -30,9 +31,9 @@ const createUser = {
         Object.keys(myKey).forEach((key) => {
           account[key] = user[key];
         });
-        res.send({
+        res.status(201).send({
           success: true,
-          message: 'Success, Token succesfully generated',
+          message: 'Token successfully generated',
           Token: token,
           user: account
         });
@@ -43,35 +44,65 @@ const createUser = {
     return User
       .findAll({
         attributes: ['id', 'firstName', 'lastName', 'username', 'email'],
+        order: [['firstName']],
         include: [{
           model: Group,
           as: 'groups',
-          attributes: ['id', 'groupName']
+          attributes: ['id', 'groupName'],
         }]
       })
       .then((users) => {
-        res.send(users);
+        res.status(302).send(users);
       })
-      .catch(error => res.send(error));
+      .catch(error => res.status(400).send(error));
   },
   deactivateAccount(req, res) {
     return User
-      .destroy({ where: { id: req.decoded.userId } })
+      .findById(req.decoded.user.id)
       .then((user) => {
         if (!user) {
-          res.status(404).send({
+          return res.status(404).send({
             success: false,
             message: 'User not found'
           });
-        } else {
-          res.status(200).send({
-            success: true,
-            message: 'User account deactivated'
+        }
+        return user
+          .destroy()
+          .then(() => {
+            res.status(200).send({
+              success: true,
+              message: 'User account successfully deactivated'
+            });
+          });
+      })
+      .catch(error => res.status(404).send(error));
+  },
+  update(req, res) {
+    return User
+      .findById(req.decoded.user.id)
+      .then((user) => {
+        if (!user) {
+          return res.status(404).send({
+            success: false,
+            message: 'User not found'
+          });
+        } else if (!req.body.password || !bcrypt.compareSync(req.body.password, user.password)) {
+          return res.status(401).send({
+            success: false,
+            message: 'Invalid password'
           });
         }
+        return user
+          .update(req.body, { fields: Object.keys(req.body) })
+          .then(() => {
+            res.status(200).send({
+              success: true,
+              message: 'User profile updated'
+            });
+          });
       })
       .catch(error => res.send(error));
-  }
+  },
 };
 
 export default createUser;

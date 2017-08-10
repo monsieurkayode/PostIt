@@ -12,7 +12,7 @@ const addToGroup = {
   addGroupMember(req, res) {
     return GroupMember
       .create({
-        memberId: req.body.memberId,
+        memberId: req.body.memberId || req.decoded.user.id,
         groupId: req.params.groupId,
       })
       .then(() => res.status(201)
@@ -25,11 +25,12 @@ const addToGroup = {
   groupMembers(req, res) {
     return GroupMember
       .findAll({ where: { groupId: req.params.groupId },
+        order: [['memberId']],
         attributes: ['memberId'],
         include: [
           { model: User, as: 'admin', attributes: ['username'] },
           { model: Group, as: 'group', attributes: ['groupName'] }] })
-      .then(groupmembers => res.send(groupmembers))
+      .then(groupmembers => res.status(302).send(groupmembers))
       .catch(error => res.status(404).send(error));
   }
 };

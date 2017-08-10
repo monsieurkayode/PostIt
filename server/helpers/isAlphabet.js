@@ -6,4 +6,4 @@ const isAlphabet = (str) => {
   return false;
 };
 
-module.exports = isAlphabet;
+export default isAlphabet;

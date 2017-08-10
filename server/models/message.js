@@ -28,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         });
         Message.belongsTo(models.User, {
           foreignKey: 'sender',
+          onDelete: 'SET NULL',
           as: 'author'
         });
       }

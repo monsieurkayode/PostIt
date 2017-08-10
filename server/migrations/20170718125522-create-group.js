@@ -14,11 +14,12 @@ module.exports = {
       },
       description: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       groupAdmin: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
+        onDelete: 'SET NULL',
         references: {
           model: 'Users',
           key: 'id',

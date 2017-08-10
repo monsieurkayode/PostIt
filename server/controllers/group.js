@@ -19,16 +19,14 @@ const createGroup = {
       })
       .then((group) => {
         const groupId = group.id;
-        User.findById(req.decoded.user.id)
+        const memberId = req.decoded.user.id;
+        GroupMember.create({ memberId, groupId })
           .then(() => {
-            const memberId = req.decoded.user.id;
-            return GroupMember.create({ memberId, groupId })
-              .catch(error => res.status(400).send(error));
+            res.status(201).send({
+              success: true,
+              message: 'Succesfully created new group'
+            });
           });
-        res.status(200).send({
-          success: true,
-          message: 'Succesfully created group'
-        });
       })
       .catch(error => res.status(400).json(error));
   },
@@ -37,6 +35,7 @@ const createGroup = {
   allGroups(req, res) {
     return Group
       .all({
+        order: [['groupName']],
         attributes: ['id', 'groupName', 'description', 'createdAt'],
         include: [
           {
@@ -50,11 +49,11 @@ const createGroup = {
             attributes: ['memberId']
           }]
       })
-      .then(group => res.status(200).json(group))
-      .catch(error => res.status(400).json(error));
+      .then(group => res.status(200).send(group))
+      .catch(error => res.status(400).send(error));
   },
 
-  // Function to add a registered user to group
+  // Function to transfer ownership of group
   changeAdmin(req, res) {
     return Group
       .findById(req.params.groupId)
@@ -81,11 +80,10 @@ const createGroup = {
                     message: 'User not a group member'
                   });
                 }
-                group
+                return group
                   .setAdmin(req.body.newAdmin)
-                // .update(req.body, { fields: Object.keys(req.body) })
                   .then(() => {
-                    res.status(201).json({
+                    res.status(202).send({
                       success: true,
                       message: 'Succesfully updated admin'
                     });
@@ -94,6 +92,48 @@ const createGroup = {
               .catch(error => res.status(400).json(error));
           });
       });
+  },
+  delete(req, res) {
+    return Group
+      .findOne({ where: { id: req.params.groupId } })
+      .then((group) => {
+        if (!group) {
+          return res.status(404).send({
+            success: false,
+            message: 'Group not found'
+          });
+        }
+        return group
+          .destroy()
+          .then(() => {
+            res.status(200).send({
+              success: true,
+              message: 'Group successfully deleted'
+            });
+          });
+      })
+      .catch(error => res.send(error));
+  },
+  update(req, res) {
+    return Group
+      .findById(req.params.id)
+      .then((group) => {
+        if (!group) {
+          return res.status(404).send({
+            success: false,
+            message: 'Group not found'
+          });
+        }
+        return group
+          .update(req.body, { fields: Object.keys(req.body) })
+          .then(() => {
+            res.status(200).send({
+              success: true,
+              message: 'Group details updated'
+            });
+          });
+      })
+      .catch(error => res.send(error));
   },
 };
 
