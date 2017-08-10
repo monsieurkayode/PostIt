@@ -14,7 +14,7 @@ before_script:
   - psql -c 'create database travis;' -U postgres
   - psql -c "create user kayode with password 'sadeeq';" -U postgres
 after success:
-  - psql -c 'drop database travis;' -U postgres
+  - psql -c 'drop table User;' -U postgres
 services:
   - postgres sql
 os: windows
