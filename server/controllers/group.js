@@ -83,7 +83,7 @@ const createGroup = {
                 return group
                   .setAdmin(req.body.newAdmin)
                   .then(() => {
-                    res.status(202).send({
+                    res.status(201).send({
                       success: true,
                       message: 'Succesfully updated admin'
                     });
@@ -133,7 +133,7 @@ const createGroup = {
             });
           });
       })
-      .catch(error => res.send(error));
+      .catch(error => res.status(400).send(error));
   },
 };
 

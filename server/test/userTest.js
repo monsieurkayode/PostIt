@@ -4,12 +4,13 @@ import 'mocha';
 // import assert from 'assert';
 import supertest from 'supertest';
 import app from '../../app';
-import clearDb from '../helpers/clearDb';
+import dbSync from '../helpers/clearDb';
 import users from '../seeders/userSeeder';
 
 const testValidUsers = users.testValidUsers;
 const validUsersLogin = users.validUsersLogin;
 //const invalidUsers = users.invalidUsers;
+const clearDb = dbSync.clearDb;
 
 const server = supertest.agent(app);
 const expect = require('chai').expect;

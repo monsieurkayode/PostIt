@@ -14,4 +14,4 @@ const clearDb = {
   }
 };
 
-export default clearDb.clearDb;
+export default clearDb;

@@ -30,7 +30,7 @@ const addToGroup = {
         include: [
           { model: User, as: 'admin', attributes: ['username'] },
           { model: Group, as: 'group', attributes: ['groupName'] }] })
-      .then(groupmembers => res.status(302).send(groupmembers))
+      .then(groupmembers => res.status(200).send(groupmembers))
       .catch(error => res.status(404).send(error));
   }
 };

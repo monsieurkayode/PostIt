@@ -37,7 +37,7 @@ const createMessage = {
           }
         ]
       })
-      .then(messages => res.status(302).send(messages))
+      .then(messages => res.status(200).send(messages))
       .catch(error => res.status(400).json(error));
   },
   findGroupMemberMessages(req, res) {
@@ -58,8 +58,8 @@ const createMessage = {
           }
         ]
       })
-      .then(messages => res.status(302).send(messages))
-      .catch(error => res.status(400).json(error));
+      .then(messages => res.status(200).send(messages))
+      .catch(error => res.status(400).send(error));
   },
   allMessages(req, res) {
     return Message
@@ -67,8 +67,8 @@ const createMessage = {
         order: [['messageId', 'ASC']],
         attributes: ['id', 'sender', 'messageId', 'message']
       })
-      .then(messages => res.status(302).json(messages))
-      .catch(error => res.status(400).json(error));
+      .then(messages => res.status(200).send(messages))
+      .catch(error => res.status(400).send(error));
   },
   delete(req, res) {
     return Message
