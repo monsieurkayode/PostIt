@@ -3,17 +3,20 @@
  */
 import fs from 'fs';
 import path from 'path';
+import dotenv from 'dotenv';
 import Sequelize from 'sequelize';
 import dbConfig from '../config/config.json';
+// import configs from '../config/config';
 
+dotenv.load();
 const basename = path.basename(module.filename);
-const env = process.env.NODE_ENV || 'development';
+const env = process.env.NODE_ENV;
 const config = dbConfig[env];
 const db = {};
 
 let sequelize;
 if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable]);
+  sequelize = new Sequelize(config.use_env_variable);
 } else {
   sequelize = new Sequelize(
     config.database, config.username, config.password, config

@@ -15,8 +15,9 @@ import groupMemberValidation from '../middlewares/groupMemberValidation';
 const app = express.Router();
 
 app.get('/api', (req, res) => {
-  res.send({
+  res.status(201).send({
     message: 'Status connected ok',
+    status: res.statusCode
   });
 });
 

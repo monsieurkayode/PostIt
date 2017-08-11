@@ -35,7 +35,8 @@ const createUser = {
           success: true,
           message: 'Token successfully generated',
           Token: token,
-          user: account
+          user: account,
+
         });
       })
       .catch(error => res.send(error));
@@ -52,7 +53,7 @@ const createUser = {
         }]
       })
       .then((users) => {
-        res.status(302).send(users);
+        res.status(200).send(users);
       })
       .catch(error => res.status(400).send(error));
   },
@@ -95,7 +96,7 @@ const createUser = {
         return user
           .update(req.body, { fields: Object.keys(req.body) })
           .then(() => {
-            res.status(200).send({
+            res.status(201).send({
               success: true,
               message: 'User profile updated'
             });
