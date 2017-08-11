@@ -23,6 +23,7 @@ describe('Test Server Connection', () => {
       .get('/api')
       .set('Connection', 'keep alive')
       .end((err, res) => {
+        expect('Content-Type').to.contain(/json/);
         expect(res.body.message).to.equal('Status connected ok');
         expect(res.statusCode).to.equal(200);
         done();
@@ -36,6 +37,7 @@ describe('Response Object', () => {
       .get('/api')
       .set('Connection', 'keep alive')
       .end((err, res) => {
+        expect('Content-Type').to.contain(/json/);
         expect(res.body).to.be.an('object');
         expect(res.statusCode).to.equal(200);
         done();
