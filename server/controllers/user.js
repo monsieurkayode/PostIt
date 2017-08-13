@@ -36,10 +36,9 @@ const createUser = {
           message: 'Token successfully generated',
           Token: token,
           user: account,
-
         });
       })
-      .catch(error => res.send(error));
+      .catch(error => res.status(400).send(error));
   },
   allUsers(req, res) {
     return User

@@ -5,15 +5,15 @@ branches:
   only:
   - testmodel
 script: 
-  - npm install
   - npm run tests
 cache:
   directories:
     - node_modules
 before_script:
+  - psql -c 'drop database if exist travis;' -U postgres
   - psql -c 'create database travis;' -U postgres
+  - NODE_ENV=test npm run migrate
 # after success:
 #   - psql -c 'drop database travis;' -U postgres
 services:
   - postgresql
-os: windows
