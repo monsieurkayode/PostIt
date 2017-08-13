@@ -6,15 +6,18 @@ import supertest from 'supertest';
 import app from '../../app';
 import dbSync from '../helpers/clearDb';
 import users from '../seeders/userSeeder';
+import silentMorgan from '../helpers/silentMorgan';
 
 const testValidUsers = users.testValidUsers;
 const validUsersLogin = users.validUsersLogin;
 //const invalidUsers = users.invalidUsers;
 const clearDb = dbSync.clearDb;
+// const disableLogger = silentMorgan.disableLogger;
 
 const server = supertest.agent(app);
 const expect = require('chai').expect;
 
+// disableLogger();
 clearDb();
 
 describe('Test Server Connection', () => {
@@ -22,10 +25,12 @@ describe('Test Server Connection', () => {
     server
       .get('/api')
       .set('Connection', 'keep alive')
+      .set('Content-Type', 'application/json')
       .end((err, res) => {
-        expect('Content-Type').to.contain(/json/);
+        expect('Content-Type', /json/);
         expect(res.body.message).to.equal('Status connected ok');
         expect(res.statusCode).to.equal(200);
+        if (err) return done(err);
         done();
       });
   });
@@ -36,10 +41,11 @@ describe('Response Object', () => {
     server
       .get('/api')
       .set('Connection', 'keep alive')
+      .set('Content-Type', 'application/json')
       .end((err, res) => {
-        expect('Content-Type').to.contain(/json/);
-        expect(res.body).to.be.an('object');
+        expect('Content-Type', /json/);
         expect(res.statusCode).to.equal(200);
+        if (err) return done(err);
         done();
       });
   });
@@ -50,13 +56,14 @@ describe('User Registration', () => {
     server
       .post('/api/user/signup')
       .set('Connection', 'keep alive')
-      .set('Content-Type', 'application/json')
+      // .set('Content-Type', 'application/json')
       .type('form')
       .send(testValidUsers[0])
       .end((err, res) => {
         expect(res.statusCode).to.equal(201);
         expect(res.body.success).to.equal(true);
         expect(res.body.message).to.equal('Token successfully generated');
+        if (err) return done(err);
         done();
       });
   });
@@ -71,6 +78,7 @@ describe('User Registration', () => {
         expect(res.statusCode).to.equal(201);
         expect(res.body.success).to.equal(true);
         expect(res.body.message).to.equal('Token successfully generated');
+        if (err) return done(err);
         done();
       });
   });
@@ -85,6 +93,7 @@ describe('User Registration', () => {
         expect(res.statusCode).to.equal(201);
         expect(res.body.success).to.equal(true);
         expect(res.body.message).to.equal('Token successfully generated');
+        if (err) return done(err);
         done();
       });
   });
@@ -99,6 +108,7 @@ describe('User Registration', () => {
         expect(res.statusCode).to.equal(201);
         expect(res.body.success).to.equal(true);
         expect(res.body.message).to.equal('Token successfully generated');
+        if (err) return done(err);
         done();
       });
   });
@@ -113,6 +123,7 @@ describe('User Registration', () => {
         expect(res.statusCode).to.equal(201);
         expect(res.body.success).to.equal(true);
         expect(res.body.message).to.equal('Token successfully generated');
+        if (err) return done(err);
         done();
       });
   });
@@ -127,6 +138,7 @@ describe('User Registration', () => {
         expect(res.statusCode).to.equal(201);
         expect(res.body.success).to.equal(true);
         expect(res.body.message).to.equal('Token successfully generated');
+        if (err) return done(err);
         done();
       });
   });
@@ -137,6 +149,7 @@ describe('User Login', () => {
     server
       .post('/api/user/signin')
       .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
       .type('form')
       .send(validUsersLogin[0])
@@ -144,6 +157,7 @@ describe('User Login', () => {
         expect(res.statusCode).to.equal(200);
         expect(res.body.success).to.equal(true);
         expect(res.body.message).to.equal('Token successfully generated');
+        if (err) return done(err);
         done();
       });
   });
@@ -151,6 +165,7 @@ describe('User Login', () => {
     server
       .post('/api/user/signin')
       .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
       .type('form')
       .send(validUsersLogin[1])
@@ -158,6 +173,7 @@ describe('User Login', () => {
         expect(res.statusCode).to.equal(200);
         expect(res.body.success).to.equal(true);
         expect(res.body.message).to.equal('Token successfully generated');
+        if (err) return done(err);
         done();
       });
   });
@@ -165,6 +181,7 @@ describe('User Login', () => {
     server
       .post('/api/user/signin')
       .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
       .type('form')
       .send(validUsersLogin[2])
@@ -172,6 +189,7 @@ describe('User Login', () => {
         expect(res.statusCode).to.equal(200);
         expect(res.body.success).to.equal(true);
         expect(res.body.message).to.equal('Token successfully generated');
+        if (err) return done(err);
         done();
       });
   });
@@ -179,6 +197,7 @@ describe('User Login', () => {
     server
       .post('/api/user/signin')
       .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
       .type('form')
       .send(validUsersLogin[3])
@@ -186,6 +205,7 @@ describe('User Login', () => {
         expect(res.statusCode).to.equal(200);
         expect(res.body.success).to.equal(true);
         expect(res.body.message).to.equal('Token successfully generated');
+        if (err) return done(err);
         done();
       });
   });
@@ -193,6 +213,7 @@ describe('User Login', () => {
     server
       .post('/api/user/signin')
       .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
       .type('form')
       .send(validUsersLogin[4])
@@ -200,6 +221,7 @@ describe('User Login', () => {
         expect(res.statusCode).to.equal(200);
         expect(res.body.success).to.equal(true);
         expect(res.body.message).to.equal('Token successfully generated');
+        if (err) return done(err);
         done();
       });
   });
@@ -207,6 +229,7 @@ describe('User Login', () => {
     server
       .post('/api/user/signin')
       .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
       .type('form')
       .send(validUsersLogin[5])
@@ -214,6 +237,7 @@ describe('User Login', () => {
         expect(res.statusCode).to.equal(200);
         expect(res.body.success).to.equal(true);
         expect(res.body.message).to.equal('Token successfully generated');
+        if (err) return done(err);
         done();
       });
   });
