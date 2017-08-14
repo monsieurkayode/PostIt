@@ -18,7 +18,7 @@ const server = supertest.agent(app);
 const expect = require('chai').expect;
 
 // disableLogger();
-clearDb();
+// clearDb();
 
 describe('Test Server Connection', () => {
   it('should respond with Status connected ok', (done) => {
@@ -56,7 +56,7 @@ describe('User Registration', () => {
     server
       .post('/api/user/signup')
       .set('Connection', 'keep alive')
-      // .set('Content-Type', 'application/json')
+      .set('Content-Type', 'application/json')
       .type('form')
       .send(testValidUsers[0])
       .end((err, res) => {
