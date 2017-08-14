@@ -18,7 +18,7 @@ const server = supertest.agent(app);
 const expect = require('chai').expect;
 
 // disableLogger();
-// clearDb();
+clearDb();
 
 describe('Test Server Connection', () => {
   it('should respond with Status connected ok', (done) => {
@@ -62,7 +62,6 @@ describe('User Registration', () => {
         expect(res.statusCode).to.equal(201);
         expect(res.body.success).to.equal(true);
         expect(res.body.message).to.equal('Token successfully generated');
-        if (err) return done(err);
         done();
       });
   });
@@ -154,7 +153,6 @@ describe('User Login', () => {
         expect(res.statusCode).to.equal(200);
         expect(res.body.success).to.equal(true);
         expect(res.body.message).to.equal('Token successfully generated');
-        if (err) return done(err);
         done();
       });
   });
