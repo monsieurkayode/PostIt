@@ -56,7 +56,6 @@ describe('User Registration', () => {
     server
       .post('/api/user/signup')
       .set('Connection', 'keep alive')
-      .set('Content-Type', 'application/json')
       .type('form')
       .send(testValidUsers[0])
       .end((err, res) => {
@@ -67,81 +66,81 @@ describe('User Registration', () => {
         done();
       });
   });
-  it('allows a new user to register', (done) => {
-    server
-      .post('/api/user/signup')
-      .set('Connection', 'keep alive')
-      .set('Content-Type', 'application/json')
-      .type('form')
-      .send(testValidUsers[1])
-      .end((err, res) => {
-        expect(res.statusCode).to.equal(201);
-        expect(res.body.success).to.equal(true);
-        expect(res.body.message).to.equal('Token successfully generated');
-        if (err) return done(err);
-        done();
-      });
-  });
-  it('allows a new user to register', (done) => {
-    server
-      .post('/api/user/signup')
-      .set('Connection', 'keep alive')
-      .set('Content-Type', 'application/json')
-      .type('form')
-      .send(testValidUsers[2])
-      .end((err, res) => {
-        expect(res.statusCode).to.equal(201);
-        expect(res.body.success).to.equal(true);
-        expect(res.body.message).to.equal('Token successfully generated');
-        if (err) return done(err);
-        done();
-      });
-  });
-  it('allows a new user to register', (done) => {
-    server
-      .post('/api/user/signup')
-      .set('Connection', 'keep alive')
-      .set('Content-Type', 'application/json')
-      .type('form')
-      .send(testValidUsers[3])
-      .end((err, res) => {
-        expect(res.statusCode).to.equal(201);
-        expect(res.body.success).to.equal(true);
-        expect(res.body.message).to.equal('Token successfully generated');
-        if (err) return done(err);
-        done();
-      });
-  });
-  it('allows a new user to register', (done) => {
-    server
-      .post('/api/user/signup')
-      .set('Connection', 'keep alive')
-      .set('Content-Type', 'application/json')
-      .type('form')
-      .send(testValidUsers[4])
-      .end((err, res) => {
-        expect(res.statusCode).to.equal(201);
-        expect(res.body.success).to.equal(true);
-        expect(res.body.message).to.equal('Token successfully generated');
-        if (err) return done(err);
-        done();
-      });
-  });
-  it('allows a new user to register', (done) => {
-    server
-      .post('/api/user/signup')
-      .set('Connection', 'keep alive')
-      .set('Content-Type', 'application/json')
-      .type('form')
-      .send(testValidUsers[5])
-      .end((err, res) => {
-        expect(res.statusCode).to.equal(201);
-        expect(res.body.success).to.equal(true);
-        expect(res.body.message).to.equal('Token successfully generated');
-        if (err) return done(err);
-        done();
-      });
-  });
+  // it('allows a new user to register', (done) => {
+  //   server
+  //     .post('/api/user/signup')
+  //     .set('Connection', 'keep alive')
+  //     .set('Content-Type', 'application/json')
+  //     .type('form')
+  //     .send(testValidUsers[1])
+  //     .end((err, res) => {
+  //       expect(res.statusCode).to.equal(201);
+  //       expect(res.body.success).to.equal(true);
+  //       expect(res.body.message).to.equal('Token successfully generated');
+  //       if (err) return done(err);
+  //       done();
+  //     });
+  // });
+  // it('allows a new user to register', (done) => {
+  //   server
+  //     .post('/api/user/signup')
+  //     .set('Connection', 'keep alive')
+  //     .set('Content-Type', 'application/json')
+  //     .type('form')
+  //     .send(testValidUsers[2])
+  //     .end((err, res) => {
+  //       expect(res.statusCode).to.equal(201);
+  //       expect(res.body.success).to.equal(true);
+  //       expect(res.body.message).to.equal('Token successfully generated');
+  //       if (err) return done(err);
+  //       done();
+  //     });
+  // });
+  // it('allows a new user to register', (done) => {
+  //   server
+  //     .post('/api/user/signup')
+  //     .set('Connection', 'keep alive')
+  //     .set('Content-Type', 'application/json')
+  //     .type('form')
+  //     .send(testValidUsers[3])
+  //     .end((err, res) => {
+  //       expect(res.statusCode).to.equal(201);
+  //       expect(res.body.success).to.equal(true);
+  //       expect(res.body.message).to.equal('Token successfully generated');
+  //       if (err) return done(err);
+  //       done();
+  //     });
+  // });
+  // it('allows a new user to register', (done) => {
+  //   server
+  //     .post('/api/user/signup')
+  //     .set('Connection', 'keep alive')
+  //     .set('Content-Type', 'application/json')
+  //     .type('form')
+  //     .send(testValidUsers[4])
+  //     .end((err, res) => {
+  //       expect(res.statusCode).to.equal(201);
+  //       expect(res.body.success).to.equal(true);
+  //       expect(res.body.message).to.equal('Token successfully generated');
+  //       if (err) return done(err);
+  //       done();
+  //     });
+  // });
+  // it('allows a new user to register', (done) => {
+  //   server
+  //     .post('/api/user/signup')
+  //     .set('Connection', 'keep alive')
+  //     .set('Content-Type', 'application/json')
+  //     .type('form')
+  //     .send(testValidUsers[5])
+  //     .end((err, res) => {
+  //       expect(res.statusCode).to.equal(201);
+  //       expect(res.body.success).to.equal(true);
+  //       expect(res.body.message).to.equal('Token successfully generated');
+  //       if (err) return done(err);
+  //       done();
+  //     });
+  // });
 });
 
 describe('User Login', () => {
@@ -149,8 +148,6 @@ describe('User Login', () => {
     server
       .post('/api/user/signin')
       .set('Connection', 'keep alive')
-      .set('Accept', 'application/json')
-      .set('Content-Type', 'application/json')
       .type('form')
       .send(validUsersLogin[0])
       .end((err, res) => {
@@ -161,84 +158,84 @@ describe('User Login', () => {
         done();
       });
   });
-  it('allows a registered user to signin', (done) => {
-    server
-      .post('/api/user/signin')
-      .set('Connection', 'keep alive')
-      .set('Accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .type('form')
-      .send(validUsersLogin[1])
-      .end((err, res) => {
-        expect(res.statusCode).to.equal(200);
-        expect(res.body.success).to.equal(true);
-        expect(res.body.message).to.equal('Token successfully generated');
-        if (err) return done(err);
-        done();
-      });
-  });
-  it('allows a registered user to signin', (done) => {
-    server
-      .post('/api/user/signin')
-      .set('Connection', 'keep alive')
-      .set('Accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .type('form')
-      .send(validUsersLogin[2])
-      .end((err, res) => {
-        expect(res.statusCode).to.equal(200);
-        expect(res.body.success).to.equal(true);
-        expect(res.body.message).to.equal('Token successfully generated');
-        if (err) return done(err);
-        done();
-      });
-  });
-  it('allows a registered user to signin', (done) => {
-    server
-      .post('/api/user/signin')
-      .set('Connection', 'keep alive')
-      .set('Accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .type('form')
-      .send(validUsersLogin[3])
-      .end((err, res) => {
-        expect(res.statusCode).to.equal(200);
-        expect(res.body.success).to.equal(true);
-        expect(res.body.message).to.equal('Token successfully generated');
-        if (err) return done(err);
-        done();
-      });
-  });
-  it('allows a registered user to signin', (done) => {
-    server
-      .post('/api/user/signin')
-      .set('Connection', 'keep alive')
-      .set('Accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .type('form')
-      .send(validUsersLogin[4])
-      .end((err, res) => {
-        expect(res.statusCode).to.equal(200);
-        expect(res.body.success).to.equal(true);
-        expect(res.body.message).to.equal('Token successfully generated');
-        if (err) return done(err);
-        done();
-      });
-  });
-  it('allows a registered user to signin', (done) => {
-    server
-      .post('/api/user/signin')
-      .set('Connection', 'keep alive')
-      .set('Accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .type('form')
-      .send(validUsersLogin[5])
-      .end((err, res) => {
-        expect(res.statusCode).to.equal(200);
-        expect(res.body.success).to.equal(true);
-        expect(res.body.message).to.equal('Token successfully generated');
-        if (err) return done(err);
-        done();
-      });
-  });
+  // it('allows a registered user to signin', (done) => {
+  //   server
+  //     .post('/api/user/signin')
+  //     .set('Connection', 'keep alive')
+  //     .set('Accept', 'application/json')
+  //     .set('Content-Type', 'application/json')
+  //     .type('form')
+  //     .send(validUsersLogin[1])
+  //     .end((err, res) => {
+  //       expect(res.statusCode).to.equal(200);
+  //       expect(res.body.success).to.equal(true);
+  //       expect(res.body.message).to.equal('Token successfully generated');
+  //       if (err) return done(err);
+  //       done();
+  //     });
+  // });
+  // it('allows a registered user to signin', (done) => {
+  //   server
+  //     .post('/api/user/signin')
+  //     .set('Connection', 'keep alive')
+  //     .set('Accept', 'application/json')
+  //     .set('Content-Type', 'application/json')
+  //     .type('form')
+  //     .send(validUsersLogin[2])
+  //     .end((err, res) => {
+  //       expect(res.statusCode).to.equal(200);
+  //       expect(res.body.success).to.equal(true);
+  //       expect(res.body.message).to.equal('Token successfully generated');
+  //       if (err) return done(err);
+  //       done();
+  //     });
+  // });
+  // it('allows a registered user to signin', (done) => {
+  //   server
+  //     .post('/api/user/signin')
+  //     .set('Connection', 'keep alive')
+  //     .set('Accept', 'application/json')
+  //     .set('Content-Type', 'application/json')
+  //     .type('form')
+  //     .send(validUsersLogin[3])
+  //     .end((err, res) => {
+  //       expect(res.statusCode).to.equal(200);
+  //       expect(res.body.success).to.equal(true);
+  //       expect(res.body.message).to.equal('Token successfully generated');
+  //       if (err) return done(err);
+  //       done();
+  //     });
+  // });
+  // it('allows a registered user to signin', (done) => {
+  //   server
+  //     .post('/api/user/signin')
+  //     .set('Connection', 'keep alive')
+  //     .set('Accept', 'application/json')
+  //     .set('Content-Type', 'application/json')
+  //     .type('form')
+  //     .send(validUsersLogin[4])
+  //     .end((err, res) => {
+  //       expect(res.statusCode).to.equal(200);
+  //       expect(res.body.success).to.equal(true);
+  //       expect(res.body.message).to.equal('Token successfully generated');
+  //       if (err) return done(err);
+  //       done();
+  //     });
+  // });
+  // it('allows a registered user to signin', (done) => {
+  //   server
+  //     .post('/api/user/signin')
+  //     .set('Connection', 'keep alive')
+  //     .set('Accept', 'application/json')
+  //     .set('Content-Type', 'application/json')
+  //     .type('form')
+  //     .send(validUsersLogin[5])
+  //     .end((err, res) => {
+  //       expect(res.statusCode).to.equal(200);
+  //       expect(res.body.success).to.equal(true);
+  //       expect(res.body.message).to.equal('Token successfully generated');
+  //       if (err) return done(err);
+  //       done();
+  //     });
+  // });
 });
