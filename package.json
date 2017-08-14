@@ -6,11 +6,12 @@
   "scripts": {
     "sequelize init": "./node_modules/.bin/sequelize init",
     "start": "nodemon --watch server --exec babel-node ./bin/www",
+    "seed": "./node_modules/.bin/babel-node ./server/helpers/seedDb",
     "start:dev": "nodemon ./bin/www",
     "migrate": "./node_modules/.bin/sequelize db:migrate",
     "unmigrate": "./node_modules/.bin/sequelize db:migrate:undo:all",
-    "test": "SET NODE_ENV=test&& mocha --timeout 10000 --compilers js:babel-core/register server/test",
-    "tests": "NODE_ENV=test mocha --timeout 10000 --compilers js:babel-core/register server/test"
+    "test": "SET NODE_ENV=test&& createdb -U postgres travis&& mocha --timeout 10000 --compilers js:babel-core/register server/test &&dropdb -U postgres travis",
+    "tests": "SET NODE_ENV=test&& mocha --timeout 10000 --compilers js:babel-core/register server/test"
   },
   "repository": {
     "type": "git",
@@ -68,6 +69,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.1.0",
     "express-session": "^1.15.3",
+    "istanbul": "^0.4.5",
     "nodemon": "^1.11.0"
   }
 }

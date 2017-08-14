@@ -5,13 +5,12 @@ branches:
   only:
   - testmodel
 script: 
-  - npm install
   - npm run tests
 cache:
   directories:
     - node_modules
 before_script:
-  - npm install -g sequelize
+  - psql -c 'drop database if exists travis;' -U postgres
   - psql -c 'create database travis;' -U postgres
 after success:
   - psql -c 'drop database travis;' -U postgres
