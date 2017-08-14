@@ -50,7 +50,8 @@ app.use(logger('dev'));
 
 // Parse incoming requests data (https://github.com/expressjs/body-parser)
 app.use(bodyParser.json());
-// app.use(bodyParser.json({ type: 'application/json' }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: 'application/json' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.disable('x-powered-by');
 
