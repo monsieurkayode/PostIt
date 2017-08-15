@@ -16,5 +16,3 @@ after success:
   - psql -c 'drop database travis;' -U postgres
 services:
   - postgresql
-os:
-  - windows

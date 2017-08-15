@@ -44,4 +44,4 @@ app.get('*', (req, res) => res.status(404).send({
   message: 'No page found',
 }));
 
-module.exports = app;
+export default app;
