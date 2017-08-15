@@ -56,7 +56,7 @@ const jane = {
   username: 'patsiizy',
   password: 'passover',
   email: 'patzii@gmail.com',
-}
+};
 
 describe('User Registration', () => {
   it('allows a new user to register', (done) => {
