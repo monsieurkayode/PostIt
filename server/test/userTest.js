@@ -50,6 +50,13 @@ describe('Response Object', () => {
       });
   });
 });
+const jane = {
+  firstName: 'Patrick',
+  lastName: 'Stewart',
+  username: 'patsiizy',
+  password: 'passover',
+  email: 'patzii@gmail.com',
+}
 
 describe('User Registration', () => {
   it('allows a new user to register', (done) => {
@@ -57,7 +64,7 @@ describe('User Registration', () => {
       .post('/api/user/signup')
       .set('Connection', 'keep alive')
       .type('form')
-      .send(testValidUsers[0])
+      .send(jane)
       .end((err, res) => {
         expect(res.statusCode).to.equal(201);
         expect(res.body.success).to.equal(true);
