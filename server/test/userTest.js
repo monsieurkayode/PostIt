@@ -6,16 +6,24 @@ import supertest from 'supertest';
 import app from '../../app';
 import dbSync from '../helpers/clearDb';
 import users from '../seeders/userSeeder';
-import silentMorgan from '../helpers/silentMorgan';
+// import silentMorgan from '../helpers/silentMorgan';
 
-const testValidUsers = users.testValidUsers;
+// const testValidUsers = users.testValidUsers;
 const validUsersLogin = users.validUsersLogin;
-//const invalidUsers = users.invalidUsers;
+// const invalidUsers = users.invalidUsers;
 const clearDb = dbSync.clearDb;
 // const disableLogger = silentMorgan.disableLogger;
 
 const server = supertest.agent(app);
 const expect = require('chai').expect;
+
+const jane = {
+  firstName: 'Patrick',
+  lastName: 'Stewart',
+  username: 'patsiizy',
+  password: 'passover',
+  email: 'patzii@gmail.com',
+};
 
 // disableLogger();
 clearDb();
@@ -50,13 +58,6 @@ describe('Response Object', () => {
       });
   });
 });
-const jane = {
-  firstName: 'Patrick',
-  lastName: 'Stewart',
-  username: 'patsiizy',
-  password: 'passover',
-  email: 'patzii@gmail.com',
-};
 
 describe('User Registration', () => {
   it('allows a new user to register', (done) => {
