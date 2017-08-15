@@ -5,7 +5,6 @@ branches:
   only:
   - testmodel
   - develop
-  - master
 addons:
   jwt:
      secure: "zxerth5603UHdjdjdndblepocnvbehwocvvjisjkvdkohschcaxzsawagdchdcxfscvfdsyhxbxgsdbv"
