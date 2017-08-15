@@ -4,6 +4,9 @@ node_js:
 branches:
   only:
   - testmodel
+addons:
+  jwt:
+     secure: "zxerth5603UHdjdjdndblepocnvbehwocvvjisjkvdkohschcaxzsawagdchdcxfscvfdsyhxbxgsdbv"
 script: 
   - npm run tests
 cache:
