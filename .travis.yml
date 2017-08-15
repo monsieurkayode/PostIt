@@ -12,6 +12,7 @@ cache:
 before_script:
   - psql -c 'drop database if exists travis;' -U postgres
   - psql -c 'create database travis;' -U postgres
+  - psql -c "CREATE USER emperor WITH PASSWORD 'sadeeq';" -U postgres
 after success:
   - psql -c 'drop database travis;' -U postgres
 services:
