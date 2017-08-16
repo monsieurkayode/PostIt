@@ -328,7 +328,9 @@ describe('Disallow empty signup form fields', () => {
       .end((err, res) => {
         expect(res.statusCode).to.equal(400);
         expect(res.body.success).to.equal(false);
-        expect(res.body.message).to.equal('Invalid Email, please enter a valid email');
+        expect(res.body.message).to.equal(
+          'Invalid Email, please enter a valid email'
+        );
         if (err) return done(err);
         done();
       });
