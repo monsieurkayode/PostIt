@@ -151,5 +151,65 @@ const invalidUsers = [
   },
 ];
 
-export default { dbUsers, validUsersLogin, invalidUsers, testValidUsers };
+const emptyFirstName = [
+  {
+    firstName: '',
+    lastName: 'Tarly',
+    username: 'samtarly',
+    password: 'password',
+    email: 'sam@gmail.com'
+  }
+];
+
+const emptyLastName = [
+  {
+    firstName: 'Sam',
+    lastName: '',
+    username: 'samtarly',
+    password: 'password',
+    email: 'sam@gmail.com'
+  }
+];
+
+const emptyUsername = [
+  {
+    firstName: 'Sam',
+    lastName: 'Tarly',
+    username: '',
+    password: 'password',
+    email: 'sam@gmail.com'
+  }
+];
+
+const emptyPassword = [
+  {
+    firstName: 'Sam',
+    lastName: 'Tarly',
+    username: 'samtarly',
+    password: '',
+    email: 'sam@gmail.com'
+  }
+];
+
+const emptyEmail = [
+  {
+    firstName: 'Sam',
+    lastName: 'Tarly',
+    username: 'samtarly',
+    password: 'password',
+    email: '',
+  }
+];
+
+export default {
+  dbUsers,
+  validUsersLogin,
+  invalidUsers,
+  testValidUsers,
+  emptyFirstName,
+  emptyLastName,
+  emptyUsername,
+  emptyPassword,
+  emptyEmail
+};
 

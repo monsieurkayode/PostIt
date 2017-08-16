@@ -12,7 +12,6 @@ const groupRoute = router.group;
 const messageRoute = router.message;
 const groupMemberRoute = router.groupMember;
 
-
 dotenv.load();
 // Set up the express app
 const app = express();
