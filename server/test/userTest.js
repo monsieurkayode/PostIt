@@ -6,26 +6,23 @@ import supertest from 'supertest';
 import app from '../../app';
 import dbSync from '../helpers/clearDb';
 import users from '../seeders/userSeeder';
-// import silentMorgan from '../helpers/silentMorgan';
+import silentMorgan from '../helpers/silentMorgan';
 
-const testValidUsers = users.testValidUsers;
-const validUsersLogin = users.validUsersLogin;
-// const invalidUsers = users.invalidUsers;
-const clearDb = dbSync.clearDb;
-// const disableLogger = silentMorgan.disableLogger;
+const testValidUsers = users.testValidUsers,
+  validUsersLogin = users.validUsersLogin,
+  // invalidUsers = users.invalidUsers,
+  emptyFirstName = users.emptyFirstName,
+  emptyLastName = users.emptyLastName,
+  emptyUsername = users.emptyUsername,
+  emptyPassword = users.emptyPassword,
+  emptyEmail = users.emptyEmail;
 
-const server = supertest.agent(app);
-const expect = require('chai').expect;
+const clearDb = dbSync.clearDb,
+  disableLogger = silentMorgan.disableLogger,
+  server = supertest.agent(app),
+  expect = require('chai').expect;
 
-// const jane = {
-//   firstName: 'Patrick',
-//   lastName: 'Stewart',
-//   username: 'patsiizy',
-//   password: 'passover',
-//   email: 'patzii@gmail.com',
-// };
-
-// disableLogger();
+disableLogger();
 clearDb();
 
 describe('Test Server Connection', () => {
@@ -64,6 +61,8 @@ describe('User Registration', () => {
     server
       .post('/api/user/signup')
       .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json')
       .type('form')
       .send(testValidUsers[0])
       .end((err, res) => {
@@ -77,6 +76,7 @@ describe('User Registration', () => {
     server
       .post('/api/user/signup')
       .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
       .type('form')
       .send(testValidUsers[1])
@@ -92,6 +92,7 @@ describe('User Registration', () => {
     server
       .post('/api/user/signup')
       .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
       .type('form')
       .send(testValidUsers[2])
@@ -107,6 +108,7 @@ describe('User Registration', () => {
     server
       .post('/api/user/signup')
       .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
       .type('form')
       .send(testValidUsers[3])
@@ -122,6 +124,7 @@ describe('User Registration', () => {
     server
       .post('/api/user/signup')
       .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
       .type('form')
       .send(testValidUsers[4])
@@ -137,6 +140,7 @@ describe('User Registration', () => {
     server
       .post('/api/user/signup')
       .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
       .type('form')
       .send(testValidUsers[5])
@@ -155,6 +159,8 @@ describe('User Login', () => {
     server
       .post('/api/user/signin')
       .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json')
       .type('form')
       .send(validUsersLogin[0])
       .end((err, res) => {
@@ -240,6 +246,89 @@ describe('User Login', () => {
         expect(res.statusCode).to.equal(200);
         expect(res.body.success).to.equal(true);
         expect(res.body.message).to.equal('Token successfully generated');
+        if (err) return done(err);
+        done();
+      });
+  });
+});
+
+describe('Disallow empty signup form fields', () => {
+  it('Check for empty first name', (done) => {
+    server
+      .post('/api/user/signup')
+      .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .type('form')
+      .send(emptyFirstName[0])
+      .end((err, res) => {
+        expect(res.statusCode).to.equal(400);
+        expect(res.body.success).to.equal(false);
+        expect(res.body.message).to.equal('Please enter your first name');
+        if (err) return done(err);
+        done();
+      });
+  });
+  it('Check for empty last name', (done) => {
+    server
+      .post('/api/user/signup')
+      .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .type('form')
+      .send(emptyLastName[0])
+      .end((err, res) => {
+        expect(res.statusCode).to.equal(400);
+        expect(res.body.success).to.equal(false);
+        expect(res.body.message).to.equal('Please enter your last name');
+        if (err) return done(err);
+        done();
+      });
+  });
+  it('Check for empty username', (done) => {
+    server
+      .post('/api/user/signup')
+      .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .type('form')
+      .send(emptyUsername[0])
+      .end((err, res) => {
+        expect(res.statusCode).to.equal(400);
+        expect(res.body.success).to.equal(false);
+        expect(res.body.message).to.equal('Please enter a username');
+        if (err) return done(err);
+        done();
+      });
+  });
+  it('Check for empty password', (done) => {
+    server
+      .post('/api/user/signup')
+      .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .type('form')
+      .send(emptyPassword[0])
+      .end((err, res) => {
+        expect(res.statusCode).to.equal(400);
+        expect(res.body.success).to.equal(false);
+        expect(res.body.message).to.equal('Please enter a password');
+        if (err) return done(err);
+        done();
+      });
+  });
+  it('Check for empty email', (done) => {
+    server
+      .post('/api/user/signup')
+      .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .type('form')
+      .send(emptyEmail[0])
+      .end((err, res) => {
+        expect(res.statusCode).to.equal(400);
+        expect(res.body.success).to.equal(false);
+        expect(res.body.message).to.equal('Invalid Email, please enter a valid email');
         if (err) return done(err);
         done();
       });

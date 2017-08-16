@@ -93,7 +93,10 @@ const createUser = {
           });
         }
         return user
-          .update(req.body, { fields: Object.keys(req.body) })
+          .update({
+            firstName: req.body.firstName || user.firstName,
+            lastName: req.body.lastName || user.lastName,
+          })
           .then(() => {
             res.status(201).send({
               success: true,
@@ -103,6 +106,28 @@ const createUser = {
       })
       .catch(error => res.send(error));
   },
+  resetPassword(req, res) {
+    return User
+      .findById(req.decoded.user.id)
+      .then((user) => {
+        if (!user) {
+          return res.status(404).send({
+            success: false,
+            message: 'User does not exist'
+          });
+        }
+        return user
+          .update({
+            password: req.body.password
+          })
+          .then(() => {
+            res.status(201).send({
+              success: true,
+              message: 'Password reset successful'
+            });
+          });
+      });
+  }
 };
 
 export default createUser;

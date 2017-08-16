@@ -20,55 +20,55 @@ const userValidation = {
       });
     }
     if (!isAlphabet(req.body.firstName)) {
-      return res.status(406).send({
+      return res.status(400).send({
         success: false,
         message: 'First name must contain alphabets only'
       });
     }
     if (!req.body.lastName) {
-      return res.status(406).send({
+      return res.status(400).send({
         success: false,
         message: 'Please enter your last name'
       });
     }
     if (!isAlphabet(req.body.lastName)) {
-      return res.status(406).send({
+      return res.status(400).send({
         success: false,
         message: 'Last name must contain alphabets only'
       });
     }
     if (!req.body.username) {
-      return res.status(406).send({
+      return res.status(400).send({
         success: false,
         message: 'Please enter a username'
       });
     }
     if (!isAlphaNumeric(req.body.username)) {
-      return res.status(406).send({
+      return res.status(400).send({
         success: false,
         message: 'Username must contain alphabets and numbers only'
       });
     }
     if (req.body.username.length < 3) {
-      return res.status(406).send({
+      return res.status(400).send({
         success: false,
         message: 'Username should be at least three characters'
       });
     }
     if (!req.body.email || !isEmail(req.body.email)) {
-      return res.status(406).send({
+      return res.status(400).send({
         success: false,
         message: 'Invalid Email, please enter a valid email'
       });
     }
     if (!req.body.password) {
-      return res.status(406).send({
+      return res.status(400).send({
         success: false,
-        message: 'Plese enter a password'
+        message: 'Please enter a password'
       });
     }
     if (req.body.password.length < 6) {
-      return res.status(406).send({
+      return res.status(400).send({
         success: false,
         message: 'Password should be at least six characters long'
       });
