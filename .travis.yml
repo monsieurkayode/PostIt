@@ -15,7 +15,6 @@ addons:
     repo_token: "bzWIhKWJMx6M4Uzbx1UIPBxYVESw9NnI7"
 script: 
   - npm run tests
-  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 cache:
   directories:
     - node_modules
@@ -24,5 +23,6 @@ before_script:
   - psql -c 'create database travis;' -U postgres
 after success:
   - psql -c 'drop database travis;' -U postgres
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 services:
   - postgresql
