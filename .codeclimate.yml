@@ -9,6 +9,8 @@ engines:
     checks:
       comma-dangle:
         enabled: false
+      linebreak-style:
+        enabled: false
   fixme:
     enabled: true
 ratings:
