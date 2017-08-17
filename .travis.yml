@@ -1,6 +1,9 @@
 language: node_js
 node_js:
   - 6.10.0
+env:
+  global:
+    - CC_TEST_REPORTER_ID: "28c7651d86de6ecb7811f88dbcf3d6c12a3ae6f85ce5f9f615eb9fb73b9de887"
 branches:
   only:
   - testmodel
@@ -11,7 +14,8 @@ addons:
   code_climate:
     repo_token: "bzWIhKWJMx6M4Uzbx1UIPBxYVESw9NnI7"
 script: 
-  - npm run tests
+  - npm run coverage
+  - cat ./coverage/lcov.info | coveralls
 cache:
   directories:
     - node_modules
@@ -20,7 +24,5 @@ before_script:
   - psql -c 'create database travis;' -U postgres
 after success:
   - psql -c 'drop database travis;' -U postgres
-  - npm install -g codeclimate-test-reporter
-  - codeclimate-test-reporter < lcov.info
 services:
   - postgresql
