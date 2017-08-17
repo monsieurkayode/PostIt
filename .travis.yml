@@ -23,6 +23,7 @@ before_script:
   - psql -c 'drop database if exists travis;' -U postgres
   - psql -c 'create database travis;' -U postgres
 after_script:
-  - npm run coverage | coveralls
+  - npm run coverage
+  - npm run coveralls
 services:
   - postgresql
