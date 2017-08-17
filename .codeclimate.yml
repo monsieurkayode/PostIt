@@ -26,3 +26,4 @@ exclude_paths:
   - "template/font/"
   - "template/scss/"
   - "template/js/"
+  - "server/routes/"
