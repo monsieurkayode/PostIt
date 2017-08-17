@@ -14,8 +14,8 @@ addons:
   code_climate:
     repo_token: "bzWIhKWJMx6M4Uzbx1UIPBxYVESw9NnI7"
 script: 
-  - npm run coverage
-  - cat ./coverage/lcov.info | coveralls
+  - npm run tests
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 cache:
   directories:
     - node_modules
