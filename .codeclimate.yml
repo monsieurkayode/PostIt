@@ -14,9 +14,9 @@ engines:
   fixme:
     enabled: true
 ratings:
-  paths:
-  - "server/**/*.js"
-  - "client/**/*.js"
+    paths:
+      - "server/**/*.js"
+      - "client/**/*.js"
 languages:
   JavaScript: true
 exclude_paths:
