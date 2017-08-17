@@ -17,8 +17,9 @@ addons:
     repo_token: "mCpedqPYG6KLWgn1ar4QRWlfJ5SbMk8WE"
 notifications:
   webhooks: https://coveralls.io/webhook?repo_token=mCpedqPYG6KLWgn1ar4QRWlfJ5SbMk8WE
-script: 
-  - NODE_ENV=test && npm run coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+script:
+  - npm run tests
+  - cat ./coverage/lcov.info | coveralls
 before_script:
   - psql -c 'drop database if exists travis;' -U postgres
   - psql -c 'create database travis;' -U postgres
