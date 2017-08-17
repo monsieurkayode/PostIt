@@ -1,9 +1,9 @@
 {
     "presets": ["es2015", "react"],
-    "plugins": ["istanbul"],
+    "plugins": [],
     "env": {
         "test": {
-            "plugins": ["istanbul"]
+          "plugins": ["istanbul"]
         }
     }
 }
