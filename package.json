@@ -10,9 +10,9 @@
     "start:dev": "nodemon ./bin/www",
     "migrate": "./node_modules/.bin/sequelize db:migrate",
     "unmigrate": "./node_modules/.bin/sequelize db:migrate:undo:all",
-    "test": "SET NODE_ENV=test&& createdb -U postgres travis&& mocha --timeout 10000 --compilers js:babel-core/register server/test &&dropdb -U postgres travis",
+    "test": "SET NODE_ENV=test&& mocha --timeout 10000 --compilers js:babel-core/register server/test",
     "tests": "cross-env NODE_ENV=test mocha --timeout 10000 --compilers js:babel-core/register server/test",
-    "coverage": "NODE_ENV=test nyc --reporter=html --reporter=text --reporter=lcov node_modules/mocha/bin/_mocha --reporter spec --timeout 10000 --compilers js:babel-core/register server/test",
+    "coverage": "NODE_ENV=test nyc --reporter=html --reporter=text --reporter=lcov mocha --reporter spec --timeout 10000 --compilers js:babel-core/register server/test",
     "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
