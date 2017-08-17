@@ -19,4 +19,8 @@ languages:
   JavaScript: true
 exclude_paths:
   - "node_modules/"
-  - "template/**/.*"
+  - "template/css/"
+  - "template/.sass-cache/"
+  - "template/font/"
+  - "template/scss/"
+  - "template/js/"

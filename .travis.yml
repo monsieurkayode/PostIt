@@ -8,6 +8,8 @@ branches:
 addons:
   jwt:
      secure: "zxerth5603UHdjdjdndblepocnvbehwocvvjisjkvdkohschcaxzsawagdchdcxfscvfdsyhxbxgsdbv"
+  code_climate:
+    repo_token: "bzWIhKWJMx6M4Uzbx1UIPBxYVESw9NnI7"
 script: 
   - npm run tests
 cache:
@@ -18,5 +20,6 @@ before_script:
   - psql -c 'create database travis;' -U postgres
 after success:
   - psql -c 'drop database travis;' -U postgres
+  - npm run coveralls
 services:
   - postgresql
