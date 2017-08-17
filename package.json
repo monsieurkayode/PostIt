@@ -13,7 +13,7 @@
     "test": "SET NODE_ENV=test&& createdb -U postgres travis&& mocha --timeout 10000 --compilers js:babel-core/register server/test &&dropdb -U postgres travis",
     "tests": "cross-env NODE_ENV=test nyc mocha --timeout 10000 --compilers js:babel-core/register server/test",
     "coverage": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text --reporter=lcov mocha --reporter spec --timeout 10000 --compilers js:babel-core/register server/test",
-    "coveralls": "cat ./coverage/lcov.info | coveralls"
+    "coveralls": "cat ./coverage/lcov.info"
   },
   "repository": {
     "type": "git",
