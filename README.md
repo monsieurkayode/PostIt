@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/monsieurkayode/PostIt.svg?branch=develop)](https://travis-ci.org/monsieurkayode/PostIt)
 [![Coverage Status](https://coveralls.io/repos/github/monsieurkayode/PostIt/badge.svg?branch=develop)](https://coveralls.io/github/monsieurkayode/PostIt?branch=develop)
+[![Code Climate](https://codeclimate.com/github/monsieurkayode/PostIt/badges/gpa.svg)](https://codeclimate.com/github/monsieurkayode/PostIt)
+[![Issue Count](https://codeclimate.com/github/monsieurkayode/PostIt/badges/issue_count.svg)](https://codeclimate.com/github/monsieurkayode/PostIt)
 # PostIt
 
 ## Introduction

@@ -1,18 +1,18 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID: "28c7651d86de6ecb7811f88dbcf3d6c12a3ae6f85ce5f9f615eb9fb73b9de887"
 language: node_js
 node_js:
   - 6.10.0
 cache:
   directories:
     - node_modules
-# env:
-#   global:
-#     - CC_TEST_REPORTER_ID: "28c7651d86de6ecb7811f88dbcf3d6c12a3ae6f85ce5f9f615eb9fb73b9de887"
 branches:
   only:
   - develop
 addons:
   jwt:
-     secure: "zxerth5603UHdjdjdndblepocnvbehwocvvjisjkvdkohschcaxzsawagdchdcxfscvfdsyhxbxgsdbv"
+    secure: "zxerth5603UHdjdjdndblepocnvbehwocvvjisjkvdkohschcaxzsawagdchdcxfscvfdsyhxbxgsdbv"
   code_climate:
     repo_token: "mCpedqPYG6KLWgn1ar4QRWlfJ5SbMk8WE"
 notifications:
@@ -24,6 +24,6 @@ before_script:
   - psql -c 'drop database if exists travis;' -U postgres
   - psql -c 'create database travis;' -U postgres
 after success:
-  - cat ./coverage/lcov.info
+  - cat ./coverage/lcov.info | coveralls
 services:
   - postgresql
