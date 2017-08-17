@@ -20,6 +20,7 @@ before_script:
   - psql -c 'create database travis;' -U postgres
 after success:
   - psql -c 'drop database travis;' -U postgres
-  - npm run coveralls
+  - npm install -g codeclimate-test-reporter
+  - codeclimate-test-reporter < lcov.info
 services:
   - postgresql
