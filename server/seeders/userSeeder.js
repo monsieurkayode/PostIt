@@ -201,6 +201,19 @@ const emptyEmail = [
   }
 ];
 
+const incorrectPassword = [
+  {
+    username: 'iceprince',
+    password: 'incorrect'
+  }
+];
+
+const nullForm = [
+  {
+    username: 'iceprince'
+  }
+];
+
 export default {
   dbUsers,
   validUsersLogin,
@@ -210,6 +223,8 @@ export default {
   emptyLastName,
   emptyUsername,
   emptyPassword,
-  emptyEmail
+  emptyEmail,
+  incorrectPassword,
+  nullForm
 };
 

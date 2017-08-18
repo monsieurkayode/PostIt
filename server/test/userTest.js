@@ -10,12 +10,14 @@ import silentMorgan from '../helpers/silentMorgan';
 
 const testValidUsers = users.testValidUsers,
   validUsersLogin = users.validUsersLogin,
-  // invalidUsers = users.invalidUsers,
+  invalidUsers = users.invalidUsers,
   emptyFirstName = users.emptyFirstName,
   emptyLastName = users.emptyLastName,
   emptyUsername = users.emptyUsername,
   emptyPassword = users.emptyPassword,
-  emptyEmail = users.emptyEmail;
+  emptyEmail = users.emptyEmail,
+  incorrectPassword = users.incorrectPassword,
+  nullForm = users.nullForm
 
 const clearDb = dbSync.clearDb,
   disableLogger = silentMorgan.disableLogger,
@@ -331,6 +333,80 @@ describe('Disallow empty signup form fields', () => {
         expect(res.body.message).to.equal(
           'Invalid Email, please enter a valid email'
         );
+        if (err) return done(err);
+        done();
+      });
+  });
+});
+
+describe('Disallow login for unregistered user', () => {
+  it('should return Invalid Authentication details', (done) => {
+    server
+      .post('/api/user/signin')
+      .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .type('form')
+      .send(invalidUsers[0])
+      .end((err, res) => {
+        expect(res.statusCode).to.equal(404);
+        expect(res.body.success).to.equal(false);
+        expect(res.body.message).to.equal(
+          'Invalid Authentication Details'
+        );
+        if (err) return done(err);
+        done();
+      });
+  });
+  it('should return Invalid Authentication details', (done) => {
+    server
+      .post('/api/user/signin')
+      .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .type('form')
+      .send(invalidUsers[1])
+      .end((err, res) => {
+        expect(res.statusCode).to.equal(404);
+        expect(res.body.success).to.equal(false);
+        expect(res.body.message).to.equal(
+          'Invalid Authentication Details'
+        );
+        if (err) return done(err);
+        done();
+      });
+  });
+});
+
+describe('Registered User Authentication', () => {
+  it('should return Invalid Authentication details', (done) => {
+    server
+      .post('/api/user/signin')
+      .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .type('form')
+      .send(incorrectPassword[0])
+      .end((err, res) => {
+        expect(res.statusCode).to.equal(401);
+        expect(res.body.success).to.equal(false);
+        expect(res.body.message).to.equal(
+          'Invalid Authentication Details'
+        );
+        if (err) return done(err);
+        done();
+      });
+  });
+  it('should return error', (done) => {
+    server
+      .post('/api/user/signin')
+      .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .type('form')
+      .send(nullForm[0])
+      .end((err, res) => {
+        expect(res.statusCode).to.equal(400);
         if (err) return done(err);
         done();
       });
