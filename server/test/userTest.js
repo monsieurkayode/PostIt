@@ -17,7 +17,7 @@ const testValidUsers = users.testValidUsers,
   emptyPassword = users.emptyPassword,
   emptyEmail = users.emptyEmail,
   incorrectPassword = users.incorrectPassword,
-  nullForm = users.nullForm
+  nullForm = users.nullForm;
 
 const clearDb = dbSync.clearDb,
   disableLogger = silentMorgan.disableLogger,
