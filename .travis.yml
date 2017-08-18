@@ -20,7 +20,6 @@ notifications:
 script:
   - npm run tests
 before_script:
-  - npm install -g coveralls
   - psql -c 'drop database if exists travis;' -U postgres
   - psql -c 'create database travis;' -U postgres
 after_script:
