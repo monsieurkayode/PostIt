@@ -15,7 +15,7 @@
     "logging": false
   },
   "production": {
-    "username": "wdgjivhfpwltgo",
+    "username": "postgres",
     "password": "sadeeq",
     "database": "travis",
     "host": "127.0.0.1",
