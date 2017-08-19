@@ -5,18 +5,17 @@
 # PostIt
 
 ## Introduction
-
-## `PostIt Is A Group Messsaging Application`
-* `Create and account and Login`
-* `Create a brodcast group`
-* `Serach for other users and add to group`
-* `Registered users can connect with their other users through groups`
-* `Send and receive group notifications`
-* `Recieve email notifications for messages posted to groups`
-* `Receive email and SMS notifications for notifications marked as urgent`
+**PostIt** Is A Group Messsaging Application
+* Create and account and Login
+* Create a brodcast group
+* Search for other users and add to group
+* Registered users can connect with their other users through groups
+* Send and receive group notifications
+* Recieve email notifications for messages posted to groups
+* Receive email and SMS notifications for notifications marked as urgent
 
 ## Tools and Dependencies
-`PostIt` is built using **Node Js** and runs on **Node** packages. Routing and
+**`PostIt`** is built using **Node Js** and runs on **Node** packages. Routing and
 and backend functionality is handled using **Express Js**
 
 ## Getting Started
