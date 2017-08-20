@@ -12,7 +12,7 @@ const addToGroup = {
   addGroupMember(req, res) {
     return GroupMember
       .create({
-        memberId: req.body.memberId || req.decoded.user.id,
+        memberId: req.body.memberId,
         groupId: req.params.groupId,
       })
       .then(() => res.status(201)

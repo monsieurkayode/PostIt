@@ -37,7 +37,7 @@ const authentication = (req, res, next) => {
     // return an error
     return res.status(403).send({
       success: false,
-      message: 'No token provided.'
+      message: 'No token provided'
     });
   }
 };
