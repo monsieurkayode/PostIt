@@ -1,6 +1,5 @@
 import 'chai';
 import 'mocha';
-import jwt from 'jsonwebtoken';
 import supertest from 'supertest';
 import app from '../../app';
 import group from '../seeders/groupSeeder';
