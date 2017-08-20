@@ -70,7 +70,7 @@ describe('User Registration', () => {
       .end((err, res) => {
         expect(res.statusCode).to.equal(201);
         expect(res.body.success).to.equal(true);
-        expect(res.body.message).to.equal('Token successfully generated');
+        expect(res.body.message).to.equal('Account successfully created');
         done();
       });
   });
@@ -85,7 +85,7 @@ describe('User Registration', () => {
       .end((err, res) => {
         expect(res.statusCode).to.equal(201);
         expect(res.body.success).to.equal(true);
-        expect(res.body.message).to.equal('Token successfully generated');
+        expect(res.body.message).to.equal('Account successfully created');
         if (err) return done(err);
         done();
       });
@@ -101,7 +101,7 @@ describe('User Registration', () => {
       .end((err, res) => {
         expect(res.statusCode).to.equal(201);
         expect(res.body.success).to.equal(true);
-        expect(res.body.message).to.equal('Token successfully generated');
+        expect(res.body.message).to.equal('Account successfully created');
         if (err) return done(err);
         done();
       });
@@ -117,7 +117,7 @@ describe('User Registration', () => {
       .end((err, res) => {
         expect(res.statusCode).to.equal(201);
         expect(res.body.success).to.equal(true);
-        expect(res.body.message).to.equal('Token successfully generated');
+        expect(res.body.message).to.equal('Account successfully created');
         if (err) return done(err);
         done();
       });
@@ -133,7 +133,7 @@ describe('User Registration', () => {
       .end((err, res) => {
         expect(res.statusCode).to.equal(201);
         expect(res.body.success).to.equal(true);
-        expect(res.body.message).to.equal('Token successfully generated');
+        expect(res.body.message).to.equal('Account successfully created');
         if (err) return done(err);
         done();
       });
@@ -149,7 +149,7 @@ describe('User Registration', () => {
       .end((err, res) => {
         expect(res.statusCode).to.equal(201);
         expect(res.body.success).to.equal(true);
-        expect(res.body.message).to.equal('Token successfully generated');
+        expect(res.body.message).to.equal('Account successfully created');
         if (err) return done(err);
         done();
       });

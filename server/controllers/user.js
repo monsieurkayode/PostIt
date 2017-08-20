@@ -23,19 +23,16 @@ const createUser = {
       .then((user) => {
         const token = jwt.sign(
           { userId: user.id,
-            username: user.username
+            username: user.username,
+            email: user.email,
           }, secret
         );
-        const myKey = { firstName: '', lastName: '', username: '', email: '' };
-        const account = {};
-        Object.keys(myKey).forEach((key) => {
-          account[key] = user[key];
-        });
         res.status(201).send({
           success: true,
-          message: 'Token successfully generated',
-          Token: token,
-          user: account,
+          message: 'Account successfully created',
+          id: jwt.decode(token).userId,
+          username: jwt.decode(token).username,
+          email: jwt.decode(token).email
         });
       })
       .catch(error => res.status(400).send(error));
@@ -66,13 +63,23 @@ const createUser = {
             message: 'User not found'
           });
         }
-        return user
-          .destroy()
-          .then(() => {
-            res.status(200).send({
-              success: true,
-              message: 'User account successfully deactivated'
-            });
+        Group
+          .findOne({ where: { groupAdmin: req.decoded.user.id } })
+          .then((groupadmin) => {
+            if (groupadmin) {
+              return res.status(400).send({
+                success: false,
+                message: 'Group admin privileges needs to be transferred first'
+              });
+            }
+            return user
+              .destroy()
+              .then(() => {
+                res.status(200).send({
+                  success: true,
+                  message: 'User account successfully deactivated'
+                });
+              });
           });
       })
       .catch(error => res.status(404).send(error));

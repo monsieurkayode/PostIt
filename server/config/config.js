@@ -4,7 +4,7 @@ import database from '../config/config.json';
 dotenv.load();
 const config = {
   development: {
-    use_env_variable: database.development
+    use_env_variable: 'DATABASE_URL'
   },
   test: {
     use_env_variable: database.test,
