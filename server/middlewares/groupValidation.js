@@ -41,7 +41,9 @@ const groupValidation = {
       .catch(error => res.status(400).send(error));
   },
   isGroupAdmin(req, res, next) {
-    Group.findOne({ where: { groupAdmin: req.decoded.user.id, id: req.params.groupId } })
+    Group.findOne({ where:
+      { groupAdmin: req.decoded.user.id, id: req.params.groupId }
+    })
       .then((groupadmin) => {
         if (!groupadmin) {
           return res.status(403).send({

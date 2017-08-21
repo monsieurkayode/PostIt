@@ -15,7 +15,9 @@ const groupMemberValidation = {
   },
   isGroupMember(req, res, next) {
     GroupMember
-      .findOne({ where: { memberId: req.body.memberId, groupId: req.params.groupId } })
+      .findOne({ where:
+        { memberId: req.body.memberId, groupId: req.params.groupId }
+      })
       .then((member) => {
         if (!member) {
           next();
@@ -29,7 +31,9 @@ const groupMemberValidation = {
   },
   validGroupMember(req, res, next) {
     GroupMember
-      .findOne({ where: { memberId: req.decoded.user.id, groupId: req.params.groupId } })
+      .findOne({ where:
+        { memberId: req.decoded.user.id, groupId: req.params.groupId }
+      })
       .then((member) => {
         if (member) {
           next();

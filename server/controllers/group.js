@@ -72,7 +72,9 @@ const createGroup = {
                 message: 'User not found'
               });
             }
-            GroupMember.findOne({ where: { memberId: req.body.newAdmin, groupId: req.params.groupId } })
+            GroupMember.findOne({ where:
+              { memberId: req.body.newAdmin, groupId: req.params.groupId }
+            })
               .then((member) => {
                 if (!member) {
                   return res.status(404).send({
@@ -95,7 +97,9 @@ const createGroup = {
   },
   delete(req, res) {
     return Group
-      .findOne({ where: { groupAdmin: req.decoded.user.id, id: req.params.groupId } })
+      .findOne({ where:
+        { groupAdmin: req.decoded.user.id, id: req.params.groupId }
+      })
       .then((group) => {
         if (!group) {
           return res.status(404).send({
@@ -116,7 +120,9 @@ const createGroup = {
   },
   update(req, res) {
     return Group
-      .findOne({ where: { id: req.params.groupId, groupAdmin: req.decoded.user.id } })
+      .findOne({ where:
+        { id: req.params.groupId, groupAdmin: req.decoded.user.id }
+      })
       .then((group) => {
         if (!group) {
           return res.status(404).send({

@@ -93,7 +93,10 @@ const createUser = {
             success: false,
             message: 'User not found'
           });
-        } else if (!req.body.password || !bcrypt.compareSync(req.body.password, user.password)) {
+        } else if (
+          !req.body.password ||
+          !bcrypt.compareSync(req.body.password, user.password)
+        ) {
           return res.status(401).send({
             success: false,
             message: 'Invalid password'
