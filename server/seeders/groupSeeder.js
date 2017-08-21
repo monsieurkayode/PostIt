@@ -50,7 +50,13 @@ const editGroup = [
 
 const newAdmin = [
   {
-    newAdmin: 2
+    newAdmin: 1
+  },
+  {
+    newAdmin: 5
+  },
+  {
+    newAdmin: 10
   }
 ];
 

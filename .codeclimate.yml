@@ -27,4 +27,3 @@ exclude_paths:
   - "template/scss/"
   - "template/js/"
   - "server/routes/"
-  - "server/test/"

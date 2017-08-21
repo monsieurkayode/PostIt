@@ -305,9 +305,73 @@ describe('Add Group Members', () => {
         done();
       });
   });
+  it('allows a logged in group member add a registered user', (done) => {
+    server
+      .post('/api/group/2/user')
+      .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
+      .set('x-access-token', userData[1])
+      .set('Content-Type', 'application/json')
+      .send(groupMembers[2])
+      .end((err, res) => {
+        expect(res.statusCode).to.equal(201);
+        expect(res.body.success).to.equal(true);
+        expect(res.body.message).to.equal('Succesfully added member');
+        if (err) return done(err);
+        done();
+      });
+  });
 });
 
 describe('Change group admin', () => {
+  it('does not allow a logged admin to transfer group ownership to non members', (done) => {
+    server
+      .put('/api/group/2/admin')
+      .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
+      .set('x-access-token', userData[1])
+      .set('Content-Type', 'application/json')
+      .send(newAdmin[1])
+      .end((err, res) => {
+        expect(res.statusCode).to.equal(404);
+        expect(res.body.success).to.equal(false);
+        expect(res.body.message).to.equal('User not a group member');
+        if (err) return done(err);
+        done();
+      });
+  });
+  it('does not allow a logged admin to transfer ownership to invalid users', (done) => {
+    server
+      .put('/api/group/2/admin')
+      .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
+      .set('x-access-token', userData[1])
+      .set('Content-Type', 'application/json')
+      .send(newAdmin[2])
+      .end((err, res) => {
+        expect(res.statusCode).to.equal(404);
+        expect(res.body.success).to.equal(false);
+        expect(res.body.message).to.equal('User not found');
+        if (err) return done(err);
+        done();
+      });
+  });
+  it('group must exist', (done) => {
+    server
+      .put('/api/group/99/admin')
+      .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
+      .set('x-access-token', userData[1])
+      .set('Content-Type', 'application/json')
+      .send(newAdmin[0])
+      .end((err, res) => {
+        expect(res.statusCode).to.equal(404);
+        expect(res.body.success).to.equal(false);
+        expect(res.body.message).to.equal('Group not found');
+        if (err) return done(err);
+        done();
+      });
+  });
   it('allows a logged admin to transfer group ownership', (done) => {
     server
       .put('/api/group/2/admin')
@@ -332,7 +396,7 @@ describe('Admin privileges', () => {
       .put('/api/group/2/update')
       .set('Connection', 'keep alive')
       .set('Accept', 'application/json')
-      .set('x-access-token', userData[0])
+      .set('x-access-token', userData[1])
       .set('Content-Type', 'application/json')
       .send(editGroup[0])
       .end((err, res) => {
@@ -348,7 +412,7 @@ describe('Admin privileges', () => {
       .delete('/api/group/2/delete')
       .set('Connection', 'keep alive')
       .set('Accept', 'application/json')
-      .set('x-access-token', userData[0])
+      .set('x-access-token', userData[1])
       .set('Content-Type', 'application/json')
       .end((err, res) => {
         expect(res.statusCode).to.equal(403);
