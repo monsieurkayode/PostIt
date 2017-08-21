@@ -3,7 +3,7 @@ const groups = [
     // id: 1,
     groupName: 'Google Developers',
     description: 'A group for Google Developers',
-    groupAdmin: 1
+    groupAdmin: 1,
   },
 
   {
@@ -42,4 +42,22 @@ const groups = [
   },
 ];
 
-export default groups;
+const editGroup = [
+  {
+    groupName: 'Google Developers Nigeria'
+  }
+];
+
+const newAdmin = [
+  {
+    newAdmin: 2
+  }
+];
+
+const invalidMember = [
+  {
+    memberId: 99
+  }
+];
+
+export default { groups, editGroup, newAdmin, invalidMember };

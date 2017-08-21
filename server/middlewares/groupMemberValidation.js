@@ -1,11 +1,11 @@
 import db from '../models/index';
-import isNumber from '../helpers/isNumber';
+// import isNumber from '../helpers/isNumber';
 
 const GroupMember = db.GroupMember;
 
 const groupMemberValidation = {
   basicValidation(req, res, next) {
-    if (req.body.memberId && !isNumber(req.body.memberId)) {
+    if (!req.body.memberId) {
       return res.status(400).send({
         success: false,
         message: 'Please enter valid user id'
@@ -15,7 +15,7 @@ const groupMemberValidation = {
   },
   isGroupMember(req, res, next) {
     GroupMember
-      .findOne({ where: { memberId: req.body.id, groupId: req.params.groupId } })
+      .findOne({ where: { memberId: req.body.memberId, groupId: req.params.groupId } })
       .then((member) => {
         if (!member) {
           next();

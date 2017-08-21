@@ -10,7 +10,7 @@ import groupMemberValidation from '../middlewares/groupMemberValidation';
 
 const router = express.Router();
 
-router.post('/api/group/:groupId/user', authentication, groupMemberValidation.basicValidation, userValidation.validUser, userValidation.userExists, groupValidation.groupExists, groupMemberValidation.isGroupMember, groupMemberController.addGroupMember);
+router.post('/api/group/:groupId/user', authentication, groupMemberValidation.basicValidation, userValidation.validUser, userValidation.userExists, groupValidation.groupExists, groupMemberValidation.validGroupMember, groupMemberValidation.isGroupMember, groupMemberController.addGroupMember);
 router.get('/api/group/:groupId/members', authentication, userValidation.validUser, groupValidation.groupExists, groupMemberValidation.validGroupMember, groupMemberController.groupMembers);
 
 export default router;

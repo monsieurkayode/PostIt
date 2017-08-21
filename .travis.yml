@@ -14,7 +14,7 @@ addons:
   jwt:
     secure: "zxerth5603UHdjdjdndblepocnvbehwocvvjisjkvdkohschcaxzsawagdchdcxfscvfdsyhxbxgsdbv"
   code_climate:
-    repo_token: "mCpedqPYG6KLWgn1ar4QRWlfJ5SbMk8WE"
+    repo_token: "28c7651d86de6ecb7811f88dbcf3d6c12a3ae6f85ce5f9f615eb9fb73b9de887"
 notifications:
   webhooks: https://coveralls.io/webhook?repo_token=mCpedqPYG6KLWgn1ar4QRWlfJ5SbMk8WE
 script:

@@ -24,7 +24,7 @@ const createGroup = {
           .then(() => {
             res.status(201).send({
               success: true,
-              message: 'Succesfully created new group'
+              message: 'Successfully created new group'
             });
           });
       })
@@ -85,7 +85,7 @@ const createGroup = {
                   .then(() => {
                     res.status(201).send({
                       success: true,
-                      message: 'Succesfully updated admin'
+                      message: 'Successfully updated admin'
                     });
                   });
               })
@@ -95,7 +95,7 @@ const createGroup = {
   },
   delete(req, res) {
     return Group
-      .findOne({ where: { id: req.params.groupId } })
+      .findOne({ where: { groupAdmin: req.decoded.user.id, id: req.params.groupId } })
       .then((group) => {
         if (!group) {
           return res.status(404).send({
@@ -116,7 +116,7 @@ const createGroup = {
   },
   update(req, res) {
     return Group
-      .findById(req.params.id)
+      .findOne({ where: { id: req.params.groupId, groupAdmin: req.decoded.user.id } })
       .then((group) => {
         if (!group) {
           return res.status(404).send({
@@ -127,7 +127,7 @@ const createGroup = {
         return group
           .update(req.body, { fields: Object.keys(req.body) })
           .then(() => {
-            res.status(200).send({
+            res.status(201).send({
               success: true,
               message: 'Group details updated'
             });
