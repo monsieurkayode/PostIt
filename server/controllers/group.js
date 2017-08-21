@@ -72,7 +72,7 @@ const createGroup = {
                 message: 'User not found'
               });
             }
-            GroupMember.findOne({ where: { memberId: req.body.newAdmin } })
+            GroupMember.findOne({ where: { memberId: req.body.newAdmin, groupId: req.params.groupId } })
               .then((member) => {
                 if (!member) {
                   return res.status(404).send({
