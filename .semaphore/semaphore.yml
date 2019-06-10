@@ -38,12 +38,6 @@ blocks:
         commands:
           # Get the latest version of our source code from GitHub:
           - checkout
-
-          # Use the version of Node.js specified in .nvmrc.
-          # Semaphore provides nvm preinstalled.
-          - nvm use
-          - node --version
-          - npm --version
       jobs:
         # Second parallel job:
         - name: server npm install and cache
@@ -62,9 +56,6 @@ blocks:
       prologue:
         commands:
           - checkout
-          - nvm use
-          - node --version
-          - npm --version
       jobs:
         - name: Server Tests
           commands:
