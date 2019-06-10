@@ -56,9 +56,10 @@ blocks:
       prologue:
         commands:
           - checkout
-          - createdb -U postgres travis
+          - sem-service start postgres
       jobs:
         - name: Server Tests
           commands:
             - cache restore server-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json),server-node-modules-$SEMAPHORE_GIT_BRANCH,server-node-modules-master
+            - createdb -U postgres -h 0.0.0.0 travis
             - npm test
