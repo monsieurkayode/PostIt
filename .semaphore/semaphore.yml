@@ -56,8 +56,8 @@ blocks:
       prologue:
         commands:
           - checkout
-          - sem-service start postgres
           - createdb -U postgres travis
+          - sem-service start postgres
       jobs:
         - name: Server Tests
           commands:
