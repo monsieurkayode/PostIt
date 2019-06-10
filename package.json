@@ -10,7 +10,7 @@
     "start:dev": "nodemon ./bin/www",
     "migrate": "./node_modules/.bin/sequelize db:migrate",
     "unmigrate": "./node_modules/.bin/sequelize db:migrate:undo:all",
-    "test": "SET NODE_ENV=test&& mocha --timeout 10000 --compilers js:babel-core/register server/test",
+    "test": "cross-env NODE_ENV=test && mocha --timeout 10000 --compilers js:babel-core/register server/test",
     "tests": "cross-env NODE_ENV=test nyc _mocha --report lcovonly --reporter spec --timeout 10000 server/test && cat ./coverage/lcov.info | coveralls",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "cat ./coverage/lcov.info | coveralls"
