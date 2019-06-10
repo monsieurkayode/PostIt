@@ -57,8 +57,7 @@ blocks:
         commands:
           - checkout
           - sem-service start postgres
-          - psql -c 'drop database if exists travis;' -U postgres
-          - psql -c 'create database travis;' -U postgres
+          - createdb -U postgres travis
       jobs:
         - name: Server Tests
           commands:
